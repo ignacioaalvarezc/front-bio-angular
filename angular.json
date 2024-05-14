@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "biombillas:build:production"
+              "buildTarget": "biombillas:build:production"
             },
             "development": {
-              "browserTarget": "biombillas:build:development"
+              "buildTarget": "biombillas:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "biombillas:build"
+            "buildTarget": "biombillas:build"
           }
         },
         "test": {
