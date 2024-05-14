@@ -1,0 +1,58 @@
+<mat-card class="card">
+    <h2 class="text-center title">OPERADORES</h2>
+    <mat-action-list class="buttons text-center">
+        <button matTooltip="Añadir operador" routerLink="/admin/add-responsibles" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Añadir</button>
+        <button matTooltip="Volver atrás" routerLink="/admin" mat-raised-button class="back-button"><mat-icon class="icon-btn">keyboard_backspace</mat-icon>Volver</button>
+    </mat-action-list>
+    <div class="filters">
+        <div class="filter-buttons">
+            <button mat-icon-button matTooltip="Deshacer filtros" aria-label="Deshacer" class="undo-filter-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="table">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-table mat-table-custom">
+            
+            <ng-container matColumnDef="responsibleId">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let responsibles"> {{ responsibles.responsibleId }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let responsibles">{{ responsibles.name }}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email</th>
+                <td mat-cell *matCellDef="let responsibles">{{ responsibles.email }}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="enabled">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let responsibles" [ngClass]="{'text-green': responsibles.enabled, 'text-red': !responsibles.enabled}">{{ responsibles.enabled ? "Activo" : "Bloqueado" }}</td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row
+                (click)="navigateToUpdateResponsible(row)"
+                [class.demo-row-is-clicked]="clickedRows.has(row)"
+                [class.hovered-row]="hoveredRows.has(row)"
+                (mousenter)="onRowMouseEnter(row)"
+                (mouseleave)="onRowMouseLeave(row)"
+                *matRowDef="let row; columns: columns;"
+                matTooltip="Editar operador"></tr>
+            </table>
+        
+            <mat-paginator [pageSizeOptions]="[13]"
+                        showFirstLastButtons
+                        aria-label="Select page of operators">
+            </mat-paginator>
+        </div>
+    </div>    
+</mat-card>
+
+
+

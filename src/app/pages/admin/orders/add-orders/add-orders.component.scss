@@ -1,0 +1,49 @@
+.card {
+    margin-top: -130px;
+    margin-left: -100px;
+    min-height: 740px;
+}
+
+.divider {
+    margin: -12px 15px;
+    margin-bottom: 80px;
+}
+
+
+.date-field {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    .date-label {
+        margin-left: 18px;
+    }
+    .date-input {
+        margin-left: 20px;
+    }
+    .time-label {
+        margin-left: 120px;
+    }
+    .time-input {
+        margin-left: 20px;
+    }
+}
+
+.buttons {
+    margin-top: 30px;
+    .icon-btn {
+        margin-top: 2px;
+    }
+    .add-button {
+        background-color: #0d4380c1;
+        color: white;
+    }
+    .clean-button {
+        margin-right: 40px;
+        margin-left: 40px;
+        background-color: #c17f227d;
+        color: white;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}

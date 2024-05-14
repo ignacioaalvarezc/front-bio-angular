@@ -1,0 +1,32 @@
+<mat-card class="card">
+    <h2 class="text-center title">PESO DESPUES DEL SECADO</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="bootstrap-wrapper">
+        <div class="container">
+            <div class="row" style="margin-top : 20px;">
+                <div class="col-md-6 offset-md-3">
+
+                    <form (ngSubmit) = "updateSanitized()">
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Peso</mat-label>
+                            <input 
+                                [(ngModel)] = "sanitizedBox.weightAfterDrying" 
+                                name="name" 
+                                type="number" 
+                                matInput 
+                                placeholder="Ingrese el peso despues del secado">
+                        </mat-form-field>
+
+                        <div class="container text-center buttons">
+                            <button type="submit" mat-raised-button color="primary">Actualizar</button>
+                            <button type="reset" class="clean-button" mat-raised-button>Limpiar</button>
+                            <button type="button" (click) = "goBack()" mat-raised-button class="back-button">Volver</button>
+                        </div>
+                    </form>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

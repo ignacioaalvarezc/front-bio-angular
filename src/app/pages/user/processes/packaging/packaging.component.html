@@ -1,0 +1,95 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">REGISTRAR UN EMPAQUETADO</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "savePackaging()">
+
+                <mat-form-field appearance="outline" class="responsible-input">
+                    <mat-label>Operador</mat-label>
+                    <mat-select name="responsible" [(ngModel)]= "packageData.responsible.responsibleId">
+                        <mat-option *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                            {{ r.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="date-field">
+                    <mat-label class="time-label">Hora de inicio: </mat-label>
+                    <input 
+                        class="time-input"
+                        [(ngModel)]="selectedHour"
+                        type="time"
+                        name="time">
+                </div>
+
+                <div class="objects-container addings">
+                    <mat-card class="sanitized-cards" *ngFor="let p of packages">
+                        <div class="provider-fields">
+                            
+                                <mat-form-field appearance="outline" class="straw-type">
+                                    <mat-label>Estuche</mat-label>
+                                    <mat-select [(ngModel)]= "p.boxType.boxTypeId" name="boxType{{p.boxType}}">
+                                        <mat-option class="input" *ngFor="let b of boxTypes" [value]="b.boxTypeId">
+                                            {{ b.provider }} {{ b.name }} {{ b.format }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            
+                            <!--
+                            <mat-form-field appearance="outline" class="provider-select">
+                                <mat-label>Proveedor</mat-label>
+                                <mat-select [(ngModel)]="selectedProvider" name="selectedProvider" (ngModelChange)="onProviderSelected()">
+                                    <mat-option *ngFor="let t of boxTypes" [value]="t.provider">{{ t.provider }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="name-select">
+                                <mat-label>Estuche</mat-label>
+                                <mat-select [(ngModel)]="selectedName" name="selectedName">
+                                <mat-option *ngFor="let n of filteredNames" [value]="n">{{ n }}</mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="format-select">
+                                <mat-label>Formato</mat-label>
+                                <mat-select [(ngModel)]="selectedFormat" name="selectedFormat">
+                                <mat-option *ngFor="let f of filteredFormats" [value]="f">{{ f }}</mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                            -->
+                        </div>
+                        <div class="row second-row form-group">
+                            <div class="col-md-6">
+                                    <input 
+                                    [(ngModel)]= "p.boxAmount"
+                                    type="number"
+                                    name="boxAmount{{p.boxAmount}}"
+                                    placeholder=" "
+                                    matTooltip="Ingrese cantidad de estuches empacados"
+                                    matInput>
+                                    <label class="label-amount">Cantidad de estuches</label>
+                            </div>
+                            <div class="col-md-6 ml-10">
+                                    <input 
+                                    [(ngModel)]= "p.weightRejected"
+                                    type="number"
+                                    name="weightRejected{{p.weightRejected}}"
+                                    placeholder=" "
+                                    matTooltip="Ingrese el peso en gramos que ha sido rechazado"
+                                    matInput>
+                                    <label class="label-rejected-weight">Peso rechazado</label>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="sanitized-button">
+                    <button matTooltip="Agregar lote de empaquetado" type="button" class="add-obj-btns add-cut-btn" mat-raised-button (click)="addObject()"><mat-icon class="icon-btn">add</mat-icon>Empaque</button>
+                </div>         
+                <div class="container text-center buttons">
+                    <button mat-raised-button color="primary" class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar</button>
+                    <button type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                    <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

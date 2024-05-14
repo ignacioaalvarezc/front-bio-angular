@@ -1,0 +1,335 @@
+.card {
+    margin-top: -130px;
+    margin-left: -100px;
+    height: 740px;
+    width: 110%;
+    .title {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .buttons {
+        margin-top: -10px;
+        display: flex;
+        justify-content: right;
+        .icon-btn {
+            margin-top: 2px;
+        }
+        .back-button {
+            color: white;
+            background-color: rgba(170, 31, 31, 0.835);
+            margin-right: 1rem;
+            margin-top: -20px;
+        }
+    }
+    .divider {
+        margin: -12px 15px;
+        height: 2px;
+        background-color: #ccc; 
+        margin-top: 2px;
+        margin-bottom: 10px;
+      }
+      .report-buttons {
+        display: flex;
+        justify-content: left;
+        width: 37%;
+        margin-top: -5px;
+        margin-left: 1rem;
+        .pdf {
+            border-radius: 50%;
+            width: 50px;
+            height: 60px;
+            .pdf-icon {
+                display: flex;
+                justify-content: center;
+                width: 28px;
+                height:28px;
+            }
+        }
+        .excel {
+            margin-left: 20px;
+            margin-right: 30px;
+            border-radius: 50%;
+            border: none;
+            width: 60px;
+            height: 60px;
+            background-color: rgb(255, 255, 255);
+            cursor: pointer;
+            .excel-icon {
+                width: 40px;
+                height: 40px;
+            }
+            &:hover {
+                background-color: rgba(221, 221, 221, 0.305);
+            }
+        }
+        
+    }
+
+    
+}
+    /*
+    .search {
+        display: flex;
+        .start-date,
+        .end-date {
+            margin-top: -30px;
+            height:70px;
+            width: 120px;
+        }
+        .start-date {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+        .end-date {
+            margin-right: 20px;
+        }
+        .filter-button {
+            display: flex;
+            margin-top: -40px;
+            margin-left: -10px;
+            color: green;
+        }
+        .undo-filter-button {
+            display:flex;
+            margin-top: -20px;
+            margin-left: -10px;
+            color: rgba(170, 31, 31, 0.835);
+        }
+        .search-responsible {
+            margin-top: -30px;
+            margin-left: 10px;
+            height: 70px;
+            width: 150px;
+        }
+        .input-responsible{
+            border-radius: 5px;
+        }
+    }
+        */
+
+          
+
+.table {
+    margin-top: 2px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    .process-header {
+        margin-top: 20px;
+    }
+} 
+
+.mat-mdc-row {
+    height: 37px;
+}
+  
+  
+.mat-mdc-row .mat-mdc-cell {
+    cursor: pointer;
+    font-size: 12px; 
+} 
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.content-center {
+    text-align: center;
+}
+
+.icon-center {
+    text-align: center;
+    right: -200px;
+}
+
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}
+
+
+
+.filters {
+    display: flex;
+    margin-right: 2rem;
+    width:100%;
+    justify-content: right;
+    .min-label {
+        margin-left: 20px;
+    }
+}
+
+.custom-select {
+    margin-left: 10px;
+    margin-top: 15px;
+    width: 90%;
+    height: 35px; // Ajusta la altura según tus necesidades
+    border-radius: 5px; // Añade esquinas redondeadas al select
+    border: 1px solid #ccc; // Añade un borde al select
+    padding: 8px; // Añade relleno interno al select
+
+    &:focus {
+        outline: none;
+        border-color: blue; 
+    }
+    &:hover {
+        background-color: rgba(202, 201, 201, 0.269);
+    }
+
+}
+
+.filter-window {
+    position: absolute;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff; /* Fondo blanco para la ventana */
+    border: 1px solid #ccc; /* Borde para la ventana */
+    padding: 10px;
+    z-index: 1000; /* Asegura que la ventana esté en la capa superior */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para un efecto elevado */
+  }
+  
+
+.form-group {
+    margin-top: 18px;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group input {
+    width: 80%;
+    padding: 3px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    transition: border-bottom-color 0.25s ease-in-out;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+  }
+  
+  .form-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #999;
+    pointer-events: none;
+    transition: top 0.25s ease-in-out, font-size 0.25s ease-in-out, color 0.25s ease-in-out;
+  }
+  
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label {
+    top: -20px;
+    font-size: 0.9em;
+    color: #007bff;
+  }
+
+
+.content {
+    display: flex;
+}
+
+.content-center {
+    text-align: center;
+}
+
+.button-filter {
+    margin-left: -10px;
+}
+
+.filter-buttons {
+    justify-content: right;
+    color: red;
+}
+
+.filter-icon {
+    font-size: 20px;
+    margin-bottom: -8px;
+    color: green;
+}
+
+.display-icon {
+    color: rgba(176, 176, 176, 0.814);
+}
+
+
+.date-input {
+    margin-top: 18px;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .date-input input {
+    width: 100%;
+    padding: 3px;
+    border-bottom: 2px solid #ccc;
+    transition: border-bottom-color 0.25s ease-in-out;
+  }
+  
+  .date-input input:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+  }
+  
+  .date-input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #999;
+    pointer-events: none;
+    transition: top 0.25s ease-in-out, font-size 0.25s ease-in-out, color 0.25s ease-in-out;
+  }
+  
+  .date-input input:focus + label,
+  .date-input input:not(:placeholder-shown) + label {
+    top: -20px;
+    font-size: 0.9em;
+    color: #007bff;
+  }
+
+  .date {
+    margin-left: 20px;
+    margin-right: 40px;
+  }
+  
+  /* Estilo específico para los input tipo date */
+  .date-input input[type="date"] {
+    /* Estilos de fondo y bordes */
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  }
+  
+  .date-input input[type="date"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de sombra al hacer foco */
+  }
+  
+  /* Cambiar el color del texto dentro del input */
+  .date-input input[type="date"]::-webkit-datetime-edit {
+    color: #333; /* Color de texto */
+  }
+  
+  /* Cambiar el color del placeholder del input */
+  .date-input input[type="date"]::-webkit-input-placeholder {
+    color: #999; /* Color del placeholder */
+  }
+  
+  /* Cambiar el estilo del calendario desplegable en Chrome */
+  .date-input input[type="date"]::-webkit-calendar-picker-indicator {
+    color: transparent; /* Ocultar el ícono predeterminado de Chrome */
+    background: url('../../../../../../assets/images/calendar.png') no-repeat; /* Puedes reemplazar 'ruta-a-tu-icono.png' con la ruta a tu propio ícono */
+    background-size: 20px; /* Tamaño del ícono */
+    cursor: pointer;
+    padding: 4px; /* Espaciado dentro del botón del calendario */
+  }
+  

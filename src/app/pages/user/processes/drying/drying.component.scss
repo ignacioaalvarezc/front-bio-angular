@@ -1,0 +1,117 @@
+.card {
+    margin-top: 40px;
+    height: 650px;
+    margin-left: -4.5rem;
+    margin-right: 0.8rem;
+}
+
+.divider {
+    margin: -12px 15px;
+}
+
+.container-sanitatings::-webkit-scrollbar {
+    display: none;
+}
+
+.container-sanitatings {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    max-height: 500px;
+    overflow-y: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+.container-sanitatings::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.container-sanitatings::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    width: 6px
+}
+
+.sanitating-cards {
+    margin-top: 20px;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    height: 140px;
+    border: 2px solid #ccc;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.number-box {
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.example-header-image {
+    margin-top: -10px;
+    background-size: cover;
+    background-color: #c17f227d;
+    background-size: 80%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.responsible {
+   margin-top: -10px;
+}
+
+.description {
+    margin-top: -8px;
+    margin-left: 50px;
+    display: inline;
+    .weight-before-p,
+    .wet-weight-p {
+        margin-top: -10px;
+    }
+    .hour-sanitized {
+        margin-top: 20px
+    }
+}
+
+.add-drying-weight-button {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: -50px;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    .icon-btn {
+        margin-top: 2px;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}
+
+@media (min-height: 850px) {
+    .card {
+        height: 750px;
+    }
+}
+
+@media (min-height: 940px) {
+    .card {
+        height: 800px;
+    }
+}
+@media (min-height: 1000px) {
+    .card {
+        height: 870px;
+    }
+}
+

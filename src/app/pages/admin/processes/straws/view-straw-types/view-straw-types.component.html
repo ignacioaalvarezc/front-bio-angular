@@ -1,0 +1,50 @@
+<mat-card class="card">
+    <h2 class="text-center title">TIPOS DE DIMENSIONADO</h2>
+    <mat-action-list class="buttons text-center">
+        <button (click)="navigateToAddStrawType()" mat-raised-button class="add-button">Añadir</button>
+        <button routerLink="/admin" mat-raised-button class="back-button">Volver</button>
+    </mat-action-list>
+</mat-card>
+
+<div class="table">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+        
+        <ng-container matColumnDef="strawTypeId">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let strawTypes"> {{ strawTypes.strawTypeId }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre de la bíombilla </th>
+            <td mat-cell *matCellDef="let strawTypes">{{ strawTypes.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let strawTypes">{{ strawTypes.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let strawTypes" [ngClass]="{'text-green': strawTypes.enabled, 'text-red': !strawTypes.enabled}">{{ strawTypes.enabled ? "Activo" : "Bloqueado" }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row 
+            (click)="navigateToUpdateStrawType(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[10]"
+                    showFirstLastButtons
+                    aria-label="Select page of straw types">
+        </mat-paginator>
+    </div>
+</div>
+
+

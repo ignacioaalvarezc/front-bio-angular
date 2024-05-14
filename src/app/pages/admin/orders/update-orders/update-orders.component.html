@@ -1,0 +1,74 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">EDITAR ORDEN N° {{ order.orderId }}</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <div class="action-icons">
+                <button mat-icon-button matTooltip="Eliminar" class="delete-icon" (click) = "deleteOrder(order.orderId)">
+                    <mat-icon >delete</mat-icon>
+                </button>
+            </div>
+            <form (ngSubmit) = "updateOrder()">
+
+                <mat-form-field appearance="fill" class="boxType-input full-width">
+                    <mat-label></mat-label>
+                    <mat-select matInput name="boxType" [(ngModel)]= "selectedBoxType">
+                        <mat-option *ngFor= "let b of boxTypes" [value]="b.boxTypeId">
+                            {{b.provider | titlecase | slice:0:3}} {{b.name}} {{b.format | titlecase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="date-field">
+                    <mat-label class="date-label">Fecha: </mat-label>
+                    <input 
+                        [(ngModel)]="order.pickUpDate"
+                        type="date"
+                        name="pickUpDate">
+                        <mat-label class="time-label">Hora: </mat-label>
+                        <input 
+                            [(ngModel)]="order.pickUpHour"
+                            type="time"
+                            name="pickUpHour">
+                </div>
+                <div class="row second-row">
+                    <div class="col-md-6 amount-field">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cantidad de paquetes</mat-label>
+                            <input 
+                            [(ngModel)]= "order.packagesNumber"
+                            type="number"
+                            name="packagesNumber"
+                            placeholder="Ingrese cantidad"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="row third-row">
+                        <div class="col-md-6 enabled-field">
+                            <mat-slide-toggle class="ml20" name="enabled" [(ngModel)]= "order.enabled" color="primary">
+                                <p class="p-toggle" [ngClass]="{'text-green': order.enabled, 'text-red': !order.enabled}">{{ order.enabled ? 'Completo' : 'Incompleto' }}</p>
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div class="indications-field">
+                    <mat-form-field class="textarea-field" appearance="fill">
+                        <mat-label>Indicaciones: </mat-label>
+                            <textarea 
+                                [(ngModel)]= "order.indications"
+                                type="text"
+                                name="indications"
+                                placeholder="Ingrese indicaciones"
+                                matInput
+                                rows="6">
+                            </textarea>
+                    </mat-form-field>
+                </div>
+                <div class="container text-center buttons">
+                    <button mat-raised-button class="update-button"><mat-icon class="icon-btn">autorenew</mat-icon>Actualizar orden</button>
+                    <button type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                    <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

@@ -1,0 +1,71 @@
+.card {
+    margin-top: -130px;
+    margin-left: -100px;
+    margin-bottom: 20px;
+    width: 110%;
+    .title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .title-text {
+        text-align: center;
+    }
+    .buttons {
+        margin-top: -20px;
+        display: flex;
+        justify-content: right;
+        .add-button {
+            color: white;
+            background-color: #0d4380c1;
+        }
+        .back-button {
+            margin-right: 20px;
+            margin-left: 50px;;
+            color: white;
+            background-color: rgba(170, 31, 31, 0.835);
+        }
+    }
+}
+
+.table {
+    margin-left: -100px;
+    width: 110%;
+}
+
+.demo-table {
+    width: 100%;
+  }
+  
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .demo-row-is-clicked {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+.bales-center {
+    text-align: center;
+}
+
+.icon-center {
+    text-align: center;
+    right: -200px;
+}
+
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}

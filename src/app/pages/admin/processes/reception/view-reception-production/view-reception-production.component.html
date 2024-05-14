@@ -1,0 +1,130 @@
+<mat-card class="card">
+    <h2 class="title">TURNOS EN RECEPCIÓN</h2>
+    <mat-action-list class="buttons">
+        <button matTooltip="Vovler atras" (click)="goBack()" mat-raised-button class="back-button"><mat-icon class="icon-btn">keyboard_backspace</mat-icon>Volver</button>
+    </mat-action-list>
+    <mat-divider class="divider"></mat-divider>
+<div class="content">
+    <div class="report-buttons">
+        <button matTooltip="Exportar a PDF" mat-button class="pdf" (click)="exportPdf()"><img src="../../../../../../assets/images/icono-PDF.png" alt="Pdf" class="pdf-icon"/></button>
+        <button matTooltip="Exportar a EXCEL" class="excel" (click)="exportExcel()"><img src="../../../../../../assets/images/icono-EXCEL.png" alt="Excel" class="excel-icon"/></button>
+    </div>
+    <div class="filters">
+        <div class="filter-buttons">
+            <button mat-icon-button matTooltip="Deshacer filtros" aria-label="Deshacer" class="undo-filter-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="table">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-table mat-table-custom">
+        
+        <ng-container matColumnDef="receptionId">
+            <th mat-header-cell *matHeaderCellDef class="process-header">
+                ID 
+                <button matTooltip="Filtrar por id" class="button-filter" mat-icon-button (click)="toggleFilter('receptionId')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let receptions"> {{ receptions.receptionId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="responsible">
+            <th mat-header-cell *matHeaderCellDef> 
+                Operador 
+                <button matTooltip="Filtrar por responsable" class="button-filter" mat-icon-button (click)="toggleFilter('responsible')">
+                <mat-icon class="filter-icon">filter_alt</mat-icon>
+              </button>
+              <div *ngIf="showFilter['responsible']" class="filter-window filter-window-responsible" id="filterWindow" #responsibleFilter>
+                <div class="col">
+                    <div class="form-group-responsible">
+                        <label for="selectedResponsible"><b>Operador:</b></label>
+                        <select matTooltip="Seleccione un operador para filtrar" class="form-control custom-select" name="selectedResponsible" id="selectedResponsible"
+                        [(ngModel)]="selectedResponsible" (change)="onChangeResponsible()">
+                            <option [ngValue]="null" selected>Elige un operador</option>
+                            <option [ngValue]="responsible" *ngFor="let responsible of responsibles">{{ responsible.name }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div></th>
+            <td class="mat-cell" mat-cell *matCellDef="let receptions">{{ receptions.responsible.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="startTime">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Hora inicio
+                <button matTooltip="Filtrar por hora de inicio" class="button-filter" mat-icon-button (click)="toggleFilter('startTime')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let receptions" class="content-center">{{ formatLocalTime(receptions.startTime) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="endTime">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Hora termino
+                <button matTooltip="Filtrar por hora" class="button-filter" mat-icon-button (click)="toggleFilter('endTime')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let receptions" class="content-center">{{ formatLocalTime(receptions.endTime) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalHours">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Total horas
+            </th>
+            <td mat-cell *matCellDef="let receptions" class="content-center">{{ receptions.totalHours }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Fecha
+                <button matTooltip="Filtrar por fecha" class="button-filter" mat-icon-button (click)="toggleFilter('startDate')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startDate']" class="filter-window filter-window-date" id="filterWindow">
+                    <div class="col">
+                        <div class="date">
+                            <label for="startDate"><b>Fecha:</b></label>
+                            <div class="date-input">
+                                <div class="input-group">
+                                <input matTooltip="Ingrese la fecha inicial para filtrar" type="date" class="form-control-date" name="startDate" id="startDate" [(ngModel)]="search.startDate" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="date-input">
+                                <label for="endDate"></label>
+                                <div class="input-group">
+                                <input matTooltip="Ingrese la fecha final para filtrar" type="date" class="form-control-date" name="endDate" id="endDate" [(ngModel)]="search.endDate" placeholder=" ">
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadReceptions()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let receptions" class="content-center">{{ receptions.date | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row 
+            (click)="navigateToUpdateReception(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[13]"
+                    showFirstLastButtons
+                    aria-label="Select page of receptions">
+        </mat-paginator>
+    </div>
+</div>
+
+</mat-card>
+
+

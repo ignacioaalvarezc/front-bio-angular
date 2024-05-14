@@ -1,0 +1,43 @@
+.login-card {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.container {
+    width: 30%;
+    box-shadow: 0 0 .15rem .15rem #b87b1ea7;
+    border-radius: 20px;
+
+    @media screen and (max-width: 1023px) {
+        width: 60%;
+    }
+
+    @media screen and (max-width: 488px) {
+        width: 80%;
+    }
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    min-width: 80px;
+}
+
+.center {
+    margin: auto;
+    display: block;
+}
+
+.input-form {
+    margin-top: 40px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+

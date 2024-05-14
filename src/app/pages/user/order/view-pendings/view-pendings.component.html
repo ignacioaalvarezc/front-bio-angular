@@ -1,0 +1,39 @@
+<mat-card class="card">
+    <h2 class="text-center mt10">ORDENES PENDIENTES</h2>
+    <mat-divider class="divider"></mat-divider>
+    <mat-card-content class="mt30">
+    <div class="container-orders">
+        <mat-card class="orders-cards" *ngFor = "let o of order; let i = index">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{o.boxType.provider | titlecase | slice:0:3}} {{o.boxType.name}} {{o.boxType.format | titlecase}}</mat-card-title>
+                <mat-card-subtitle>{{ o.pickUpDate | date: 'dd/MM/yyyy' }} {{ o.pickUpHour.split(':')[0] }}:{{ o.pickUpHour.split(':')[1] }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card-actions>
+                    <div class="description">
+                        <p>Total de cajas: {{ o.packagesNumber }}</p>
+                        <p class="weight-before-p">Indicaciones: {{ o.indications }}</p>
+                    </div>
+        
+                    <div class="row third-row state">
+                        <div class="col-md-6 state">
+                            <mat-slide-toggle class="ml20" name="enabled" [(ngModel)]= "o.enabled" color="primary" class="toggle">
+                                <p class="state-o" [ngClass]="{'text-green': o.enabled, 'text-red': !o.enabled}">{{ o.enabled ? 'Completo' : 'Incompleto' }}</p>
+                            </mat-slide-toggle>
+                            <div class="container text-center buttons">
+                                <button mat-raised-button class="update-button" (click)="updateOrder(i)"><mat-icon class="icon-btn">autorenew</mat-icon>Actualizar</button>
+                          </div>
+                        </div>
+                    </div>
+                </mat-card-actions>
+            </mat-card-content>
+        
+        </mat-card>
+    </div>
+
+    <div class="container text-center mt20 final-button">
+        <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+    </div>
+    </mat-card-content>
+</mat-card>

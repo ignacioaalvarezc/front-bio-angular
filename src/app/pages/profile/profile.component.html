@@ -1,0 +1,51 @@
+<mat-card class="card h650">
+    <h2 class="text-center mt10 mb4">DATOS PERSONALES</h2>
+    <mat-divider class="divider"></mat-divider>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="text-center mt10">
+                    <img [src]= "users.photoUrl || '../../../assets/images/default-profile.jpg'"
+                     alt="Perfil" class="profile-image">
+                     <h1 class="mt10">{{ users.name | titlecase }}</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <table class="table text-center">
+                            <tr>
+                                <td>Nombre de usuario</td>
+                                <td>{{ users.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>ID</td>
+                                <td>{{ users.userId }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{ users.email }}</td>
+                            </tr>
+                            <tr>
+                                <td>Telefono</td>
+                                <td>{{ users.phoneNumber }}</td>
+                            </tr>
+                            <tr>
+                                <td>Rol</td>
+                                <td>{{ users.authorities[0].authority }}</td>
+                            </tr>
+                            <tr>
+                                <td>Estado</td>
+                                <td>{{ users.enabled ? "Activo" : "No activo" }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-card-actions class="buttons">
+            <button mat-raised-button class="update-button"><mat-icon class="icon-btn">autorenew</mat-icon>Actualizar</button>
+            <button mat-raised-button (click)="navigateToUpdatePassword(users)" class="reset-button"><mat-icon class="icon-btn">lock</mat-icon>Cambiar contraseña</button>
+            <button (click)="goBack()" mat-raised-button class="back-button"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+        </mat-card-actions>
+    </mat-card-content>
+    </mat-card>
+

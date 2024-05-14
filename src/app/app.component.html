@@ -1,0 +1,24 @@
+<html   
+    class="html-app">
+    <ngx-ui-loader 
+        delay="2000"
+        fgsColor = "#fbfffb"
+        pbColor = "#fbfffb"
+        text = "Espere por favor ..."
+        textColor = "#fbfffbs">
+        </ngx-ui-loader>
+        <div ngxUiLoaderBlurred (blur) = "10"></div>
+        <app-sidenav
+            *ngIf = "isAdmin"
+            (onToggleSideNav)="onToggleSideNav($event)"
+        ></app-sidenav>
+        <app-header
+            *ngIf = "!isLoginPage && isUser" 
+        ></app-header>
+        <app-body
+            *ngIf = "isAdmin" 
+            [collapsed]="isSideNavCollapsed"
+            [screenWidth]="screenWidth"
+        ></app-body>
+        <router-outlet></router-outlet>
+</html>

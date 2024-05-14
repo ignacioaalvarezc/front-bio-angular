@@ -1,0 +1,65 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">ACTUALIZA EL TIPO DE ESTUCHE {{ boxType.boxTypeId }}E</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="bootstrap-wrapper">
+        <div class="container">
+            <div class="row" style="margin-top : 20px;">
+                <div class="col-md-6 offset-md-3">
+
+                    <div class="container text-center buttons">
+                        <button (click)="updateBoxType()" mat-raised-button color="primary">Actualizar</button>
+                        <button type="reset" class="clean-button" mat-raised-button>Limpiar</button>
+                        <button type="reset" (click) = "goBack()" mat-raised-button class="back-button">Volver</button>
+                    </div>
+
+                    <div class="action-icons">
+                        <button mat-icon-button [matTooltip]="boxType.enabled ? 'Bloquear' : 'Desbloquear'" (click)="toggleBoxStatus(boxType.strawTypeId, boxType.enabled)">
+                            <mat-icon [ngClass]="{'text-green': !boxType.enabled, 'text-red': boxType.enabled}">{{ boxType.enabled ? 'block' : 'check_circle' }}</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Eliminar" class="delete-icon" (click) = "deleteBoxType(boxType.strawTypeId, boxType.name)">
+                            <mat-icon >delete</mat-icon>
+                        </button>
+                    </div>
+
+                    <form (ngSubmit) = "updateBoxType()">
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input [(ngModel)] = "boxType.name" name="name" type="text" matInput placeholder="Ingrese el nombre del tipo de empaquetado">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Proveedor</mat-label>
+                            <input [(ngModel)] = "boxType.provider" name="provider" type="text" matInput placeholder="Ingrese el proveedor">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Formato</mat-label>
+                            <input [(ngModel)] = "boxType.format" name="format" type="text" matInput placeholder="Ingrese el formato">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Cantidad de bíombillas</mat-label>
+                            <input [(ngModel)] = "boxType.strawAmount" name="strawAmount" type="number" matInput placeholder="Ingrese cantidad">
+                        </mat-form-field>
+
+                        <div class="col-md-6 ml-10">
+                            <mat-form-field class="textarea-field" appearance="fill">
+                                <mat-label>Descripción</mat-label>
+                                    <textarea 
+                                        [(ngModel)]= "boxType.description"
+                                        type="text"
+                                        name="description"
+                                        placeholder="Ingrese una descripción"
+                                        matInput
+                                        rows="6">
+                                    </textarea>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

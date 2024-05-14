@@ -1,0 +1,78 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">INGRESAR UNA ORDEN</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="bootstrap-wrapper">
+        <div class="container">
+            <div class="row-mt30">
+                <div class="col-md-6 offset-md-3">
+                    <form (ngSubmit) = "saveOrder()">
+
+                        <mat-form-field appearance="fill" class="box-type-input full-width">
+                            <mat-label>Tipo de paquete</mat-label>
+                            <mat-select name="boxType" [(ngModel)]= "orderData.boxType">
+                                <mat-option *ngFor= "let b of boxTypes" [value]="b">
+                                    {{ b.name }} {{ b.provider }} {{ b.format }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="date-field">
+                            <mat-label class="date-label">Fecha de entrega: </mat-label>
+                            <input 
+                                class="date-input"
+                                [(ngModel)]="selectedDate"
+                                type="date"
+                                name="date">
+                                <mat-label class="time-label">Hora: </mat-label>
+                                <input 
+                                    class="time-input"
+                                    [(ngModel)]="selectedHour"
+                                    type="time"
+                                    name="time">
+                        </div>
+                        <div class="row second-row">
+                            <div class="col-md-6 ">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Cantidad de paquetes</mat-label>
+                                    <input 
+                                    [(ngModel)]= "orderData.packagesNumber"
+                                    type="number"
+                                    name="packagesNumber"
+                                    placeholder="Ingrese cantidad"
+                                    matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Estado</mat-label>
+                                    <mat-select name="estado" [(ngModel)]="orderData.enabled" placeholder="Ingrese estado">
+                                        <mat-option value="true">Completo</mat-option>
+                                        <mat-option value="false">Incompleto</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>                          
+                        </div>
+                        <div class="indications-field">
+                            <mat-form-field class="textarea-field full-width" appearance="fill">
+                                <mat-label>Indicaciones: </mat-label>
+                                    <textarea 
+                                        [(ngModel)]= "orderData.indications"
+                                        type="text"
+                                        name="indications"
+                                        placeholder="Ingrese indicaciones especiales"
+                                        matInput
+                                        rows="6">
+                                    </textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="container text-center buttons">
+                            <button mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar orden</button>
+                            <button type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                            <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                        </div>
+                    </form>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

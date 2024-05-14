@@ -1,0 +1,30 @@
+.contenedor-botones {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin-left: -5rem;
+    margin-top: -30px;
+  }
+  
+  .boton-rectangular {
+    margin: 20px;
+    height: 100px;
+    width: 400px;
+    padding: 10px 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .boton-rectangular:hover {
+    background-color: #c17f227d;
+    color: #fff;
+    border: #fff;
+  }
+  

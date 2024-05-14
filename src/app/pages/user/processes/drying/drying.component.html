@@ -1,0 +1,38 @@
+<mat-card class="card">
+    <h2 class="text-center mt10">REGISTRAR LOTE DE SECADO</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <mat-card-content class="mt30">
+                <div class="container-sanitatings">
+                    <mat-card class="sanitating-cards" *ngFor = "let s of sanitizedBoxes; let i = index">
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"><p class="number-box">0{{ s.numberBox }}</p></div>
+                            <mat-card-title class="responsible">{{ s.responsible.name | titlecase }}</mat-card-title>
+                            <mat-card-subtitle>{{ s.date | date: 'dd/MM/yyyy' }} {{ s.hour }}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-card-actions>
+                                <div class="description">
+                                    <p><b>Formato {{ s.strawType.name }}</b></p>
+                                    <p class="weight-before-p">Peso seco inicial: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{s.weightBeforeDrying }}g</p>
+                                    <p class="wet-weight-p">Peso húmedo: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ s.wetWeight }}g</p>
+                                </div>    
+                                <div class="description">
+                                    <p class="hour-sanitized">Hora sanitizado: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{s.hourSanitized }}</p>
+                                    <p class="wet-weight-p">Hora inicio secado: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ s.hourDryingBegin }}</p>
+                                </div>              
+                                <div class="add-drying-weight-button">
+                                    <button matTooltip="Añadir peso seco en gramos" mat-button color="primary" class="mb20" (click)="navigateToAddDrying(s)">Añadir secado</button>
+                                </div> 
+                            </mat-card-actions>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="buttons">
+                    <button matTooltip="Volver atrás" mat-raised-button class="back-button" routerLink="/admin"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+                </mat-card-content>
+        </div>
+    </div>  
+</mat-card>

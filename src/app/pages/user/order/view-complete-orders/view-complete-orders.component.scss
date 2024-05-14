@@ -1,0 +1,60 @@
+.date {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: -80px;
+    .start-date {
+        margin-right: 20px;
+        width: 190px;
+    }
+    .end-date {
+        width: 190px;
+    }
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;
+    margin-left: -80px;
+}
+
+.mat-header-cell {
+    color: white;
+  }
+
+  .mat-header-cell.mat-header-cell {
+    background-color: #c17f227d;
+  }
+
+.content-center {
+    text-align: center;
+}
+
+.divider {
+    color: #c17f227d;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-left: -80px;
+    margin-top: 20px;
+    .icon {
+        margin-top: 2px;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}
+
+
+.text-green {
+    color: green;
+}
+
+.text-red {
+    color: red;
+}

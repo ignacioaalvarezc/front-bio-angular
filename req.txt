@@ -1,0 +1,6 @@
+Angular 16.2.5
+Angular material
+bootstrap
+sweetalert2
+ngx-ui-loader
+npm install ng2-datepicker --save

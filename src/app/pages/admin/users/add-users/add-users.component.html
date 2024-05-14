@@ -1,0 +1,63 @@
+<mat-card class="card">
+    <h2 class="text-center mt10">AGREGAR UN NUEVO USUARIO</h2>
+    <mat-divider class="divider"></mat-divider>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row mt30">
+                    <div class="col-md-6 offset-md-3">
+                        <form (ngSubmit) = "formSubmit()">
+
+                            <mat-form-field class="full-width">
+                                <mat-label>Rol</mat-label>
+                                <mat-select [(value)]="selectedRole">
+                                  <mat-option *ngFor="let role of roles" [value]="role">
+                                    {{ role }}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Nombre de usuario</mat-label>
+                                <input required [(ngModel)] = "user.username" name = "username" matInput placeholder = "Ingrese su nombre de usuario">
+                                <mat-hint>El nombre de usuario debe ser único.</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Contraseña</mat-label>
+                                <input required [(ngModel)] = "user.password" name = "password" type="password" matInput placeholder="Ingrese su contraseña" #passwordInput>
+                                <button mat-icon-button type="button" matSuffix (click)="togglePasswordVisibility(passwordInput)" matTooltip="{{ hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña' }}">
+                                    <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                                </button>
+                                <mat-hint>La contraseña debe contener letras y números.</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Confirmar Contraseña</mat-label>
+                                <input required [(ngModel)]="user.confirmPassword" name="confirmPassword" type="password" matInput placeholder="Confirme su contraseña" #confirmPasswordInput>
+                                <button mat-icon-button type="button" matSuffix (click)="togglePasswordConfirmVisibility(confirmPasswordInput)" matTooltip="{{ hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña' }}">
+                                    <mat-icon>{{ hideConfirmPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="passwordsDoNotMatch">Las contraseñas no coinciden.</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input required [(ngModel)] = "user.name" name="name" type="text" matInput placeholder="Ingrese su nombre">
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input required [(ngModel)] = "user.email" name="email" type="email" matInput placeholder="Ingrese su correo electrónico">
+                            </mat-form-field>
+
+                            <div class="text-center buttons input">
+                                <button mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar</button>
+                                <button type="reset" class="clean-button" mat-raised-button><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                                <button type="reset" (click) = "goBack()" mat-raised-button class="back-button"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                            </div>
+                        </form>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+</mat-card>

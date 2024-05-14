@@ -1,0 +1,109 @@
+.card {
+    margin-top: 40px;
+    height: 650px;
+    margin-left: -72px;
+    margin-right: 10px;
+}
+
+.divider {
+    margin: -12px 15px;
+}
+
+.container-orders::-webkit-scrollbar {
+    display: none;
+}
+
+.container-orders {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    max-height: 500px;
+    overflow-y: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+.container-orders::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.container-orders::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    width: 6px
+}
+
+.orders-cards {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 160px;
+}
+
+.example-header-image {
+    background-image: url('../../../../../assets/images/icon-order.svg');
+    background-size: cover;
+    background-color: #c17f227d;
+    background-size: 80%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.description {
+    margin-left: 50px;
+    display: inline;
+    .weight-before-p,
+    .wet-weight-p {
+        margin-top: -10px;
+    }
+}
+
+.state {
+    display: flex;
+    flex-direction: column;
+    margin-top: -40px;
+    margin-left: auto;
+    margin-right: 10px;
+    .state-o {
+        margin-top: 8px;
+        margin-left: 30px;
+    }
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}
+
+.buttons {
+    margin-top: 20px;
+    .icon-btn {
+        margin-top: 2px;
+    }
+    .update-button {
+        background-color: #0d4380c1;
+        color: white;
+    }
+}
+
+
+.final-button {
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+    
+}
+
+@media (max-width: 1142px) {
+    .container-orders {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
+
+
+
+

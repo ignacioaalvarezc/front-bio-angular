@@ -1,0 +1,84 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">REGISTRAR LOTE DE SANITIZADO</h2>
+    <mat-divider class="divider" style="margin-top: 8px;"></mat-divider>
+    <mat-divider class="divider" style="margin-top: -8px;"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "saveSanitating()">
+
+                <mat-form-field appearance="outline" class="responsible-input">
+                    <mat-label>Operador</mat-label>
+                    <mat-select name="responsible" [(ngModel)]= "sanitizedBoxData.responsible.responsibleId">
+                        <mat-option *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                            {{ r.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="date-field">
+                    <mat-label class="time-label">Hora de inicio: </mat-label>
+                    <input 
+                        class="time-input"
+                        [(ngModel)]="selectedHour"
+                        type="time"
+                        name="time">
+                </div>
+
+                <div class="objects-container addings">
+                    <mat-card class="sanitized-cars" *ngFor="let s of sanitizedBoxes; let i = index">
+                        <div class="extra-time">
+                            <p>{{ s.numberBox }}</p>
+                            <mat-label class="time-label">Sanitizado: </mat-label>
+                            <input class="input-time" type="time" [(ngModel)]="s.hourSanitized" name="hourSanitized{{s.hourSanitized}}" required>
+                            <mat-label class="time-label">Inicio secado: </mat-label>
+                            <input class="input-time" type="time" [(ngModel)]="s.hourDryingBegin" name="hourDryingBegin{{s.hourDryingBegin}}" required>
+                            <mat-label class="time-label time-label-final">Final secado: </mat-label>
+                            <input type="time" class="input-time input-time-final" [(ngModel)]="s.hourDryingEnd" name="hourDryingEnd{{s.hourDryingEnd}}" required>
+                        </div>
+                        <div class="fields">
+                            <mat-form-field appearance="outline" class="straw-type">
+                                <mat-label>Tipo de dimensionado</mat-label>
+                                <mat-select [(ngModel)]= "s.strawType.strawTypeId" name="strawType{{s.strawType}}">
+                                    <mat-option class="input" *ngFor="let t of strawTypes" [value]="t.strawTypeId">
+                                        {{ t.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="adding-inputs">
+                                <div class="fields form-group">
+                                    <input type="number" [(ngModel)]="s.weightBeforeDrying" name="weightBeforeDrying{{s.weightBeforeDrying}}" placeholder="" required>
+                                    <label for="weightBeforeDrying">Peso anterior</label>
+                                    <input class="input-wet-weight" type="number" [(ngModel)]="s.wetWeight" name="wetWeight{{s.wetWeight}}" placeholder="" required>
+                                    <label class="label-wet-weight" for="wetWeight">Peso húmedo</label>
+                                    <i matTooltip="Eliminar caja de sanitizado" (click)="removeSanitizedBox(s)"><mat-icon>close</mat-icon></i>
+                                </div>   
+                            </div>    
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="sanitized-button">
+                    <button matTooltip="Agregar lote de sanitizado" type="button" class="add-obj-btns add-cut-btn" mat-raised-button (click)="addObject()"><mat-icon class="icon-btn">add</mat-icon>Sanitizado</button>
+                </div>
+
+                <div class="textarea-field form-group" appearance="fill">
+                    <textarea 
+                        class= "textarea"
+                        [(ngModel)]= "sanitizedData.observations"
+                        type="text"
+                        name="reasonRejected"
+                        placeholder=" "
+                        matInput
+                        rows="6">
+                    </textarea>
+                    <label class="label-type">Observaciones</label>
+                </div>
+                
+                <div class="buttons">
+                    <button matTooltip="Registrar un nuevo lote de sanitizado" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar</button>
+                    <button matTooltip="Borrar todos los valores del formulario" type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                    <button matTooltip="Volver atrás" type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

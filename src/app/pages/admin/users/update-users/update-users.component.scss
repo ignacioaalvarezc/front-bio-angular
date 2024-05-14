@@ -1,0 +1,56 @@
+.card {
+    margin-top: -130px;
+    margin-left: -100px;
+    min-height: 740px;
+}
+
+.divider {
+    margin: -12px 15px;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+    .delete-icon {
+        margin-left: 30px;
+        color: rgba(170, 31, 31, 0.835);
+    }
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}
+
+.buttons {
+    margin-top: 20px;
+    .icon-btn {
+        margin-top: 2px;
+    }
+    .update-button {
+        background-color: #0d4380c1;
+        color: white;
+    }
+    .clean-button {
+        margin-right: 40px;
+        margin-left: 40px;
+        background-color: #c17f227d;
+        color: white;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}

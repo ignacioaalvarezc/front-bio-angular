@@ -1,0 +1,41 @@
+<mat-card class="card h650">
+    <h2 class="text-center mt10">ACTUALIZA LOS DATOS DEL OPERADOR {{ responsible.name | uppercase }} {{ responsible.lastName | uppercase }}</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="bootstrap-wrapper">
+        <div class="container">
+            <div class="row" style="margin-top : 20px;">
+                <div class="col-md-6 offset-md-3">
+
+                    <div class="action-icons">
+                        <button mat-icon-button [matTooltip]="responsible.enabled ? 'Bloquear' : 'Desbloquear'" (click)="toggleResponsibleStatus(responsible.responsibleId, !responsible.enabled, responsible.name)">
+                            <mat-icon [ngClass]="{'text-green': responsible.enabled, 'text-red': !responsible.enabled}">{{ responsible.enabled ? 'check_circle' : 'block' }}</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Eliminar" class="delete-icon" (click) = "deleteResponsible(responsible.responsibleId, responsible.name)">
+                            <mat-icon >delete</mat-icon>
+                        </button>
+                    </div>
+
+                    <form (ngSubmit) = "updateResponsible()">
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input [(ngModel)] = "responsible.name" name="name" type="text" matInput placeholder="Ingrese el nombre del operador">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input [(ngModel)] = "responsible.email" name="email" type="email" matInput placeholder="Ingrese el correo electrónico del responsable">
+                        </mat-form-field>
+
+                        <div class="container text-center buttons">
+                            <button type="submit" mat-raised-button class="update-button">Actualizar</button>
+                            <button type="reset" class="clean-button" mat-raised-button>Limpiar</button>
+                            <button type="reset" (click) = "goBack()" mat-raised-button class="back-button">Volver</button>
+                        </div>
+                    </form>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

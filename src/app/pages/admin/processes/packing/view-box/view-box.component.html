@@ -1,0 +1,54 @@
+<mat-card class="card">
+    <h2 class="text-center title">TIPOS DE ESTUCHE</h2>
+</mat-card>
+<mat-action-list class="buttons">
+    <button matTooltip="Añadir estuche" routerLink="/admin/add-boxTypes" mat-raised-button class="add-button"><mat-icon>add</mat-icon>Añadir</button>
+    <button matTooltip="Volver atrás" routerLink="/admin" mat-raised-button class="back-button"><mat-icon>undo</mat-icon>Volver</button>
+  </mat-action-list>
+
+<div class="table">
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+        
+        <ng-container matColumnDef="boxTypeId">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let boxTypes">{{boxTypes.boxTypeId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="provider">
+            <th mat-header-cell *matHeaderCellDef>Proveedor </th>
+            <td mat-cell *matCellDef="let boxTypes">{{boxTypes.provider}}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let boxTypes">{{boxTypes.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="format">
+            <th mat-header-cell *matHeaderCellDef>Formato</th>
+            <td mat-cell *matCellDef="let boxTypes">{{boxTypes.format}}</td>
+        </ng-container>
+        <ng-container matColumnDef="strawAmount">
+            <th mat-header-cell *matHeaderCellDef>Cantidad de bíombillas</th>
+            <td mat-cell *matCellDef="let boxTypes">{{boxTypes.strawAmount}}</td>
+        </ng-container>
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let reception">{{boxTypes.enabled ? "Inactivo" : "Activo"}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row 
+            (click)="navigateToUpdateBoxType(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[9]"
+                    showFirstLastButtons
+                    aria-label="Select page of box types">
+        </mat-paginator>
+    </div>
+</div>
+

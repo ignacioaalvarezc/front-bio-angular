@@ -1,0 +1,195 @@
+<mat-card class="card">
+    <h2 class="title">DIMENSIONADOS</h2>
+    <mat-action-list class="buttons">
+        <button matTooltip="Añadir dimensionado" routerLink="/admin/add-sizings" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Añadir</button>
+        <button matTooltip="Vovler atras" routerLink="/admin" mat-raised-button class="back-button"><mat-icon class="icon-btn">keyboard_backspace</mat-icon>Volver</button>
+    </mat-action-list>
+    <mat-divider class="divider"></mat-divider>
+<div class="content">
+    <div class="report-buttons">
+        <button matTooltip="Exportar a PDF" mat-button class="pdf" (click)="exportPdf()"><img src="../../../../../../assets/images/icono-PDF.png" alt="Pdf" class="pdf-icon"/></button>
+        <button matTooltip="Exportar a EXCEL" class="excel" (click)="exportExcel()"><img src="../../../../../../assets/images/icono-EXCEL.png" alt="Excel" class="excel-icon"/></button>
+    </div>
+    <div class="filters">
+        <div class="filter-buttons">
+            <button mat-icon-button matTooltip="Deshacer filtros" aria-label="Deshacer" (click)="clearDateFilter()" class="undo-filter-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="table">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-table mat-table-custom">
+        
+        <ng-container matColumnDef="sizedBasketId">
+            <th mat-header-cell *matHeaderCellDef>
+                Id 
+                <button matTooltip="Filtrar por ID" class="button-filter" mat-icon-button (click)="toggleFilter('sizedBasketId')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let sizings"> {{ sizings.sizedBasketId }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="responsible">
+            <th mat-header-cell *matHeaderCellDef> 
+                Operador 
+                <button matTooltip="Filtrar por responsable" class="button-filter" mat-icon-button (click)="toggleFilter('responsible')">
+                <mat-icon class="filter-icon">filter_alt</mat-icon>
+              </button>
+              <div *ngIf="showFilter['responsible']" class="filter-window filter-window-responsible" id="filterWindow" #responsibleFilter>
+                <div class="col">
+                    <div class="form-group-responsible">
+                        <label for="selectedResponsible"><b>Responsable:</b></label>
+                        <select matTooltip="Seleccione un responsable para filtrar" class="form-control custom-select" name="selectedResponsible" id="selectedResponsible"
+                        [(ngModel)]="selectedResponsible" (change)="onChangeResponsible()">
+                            <option [ngValue]="null" selected>Elige un responsable</option>
+                            <option [ngValue]="responsible" *ngFor="let responsible of responsibles">{{ responsible.name }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div></th>
+            <td class="mat-cell" mat-cell *matCellDef="let reception">{{ reception.responsible.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="strawType">
+            <th mat-header-cell *matHeaderCellDef> 
+                Tipo de dimensionado
+                <button matTooltip="Filtrar por tipo de bíombilla" class="button-filter" mat-icon-button (click)="toggleFilter('strawType')">
+                <mat-icon class="filter-icon">filter_alt</mat-icon>
+              </button>
+              <div *ngIf="showFilter['strawType']" class="filter-window filter-window-strawType" id="filterWindow" #strawTypeFilter>
+                <div class="col">
+                    <div class="form-group-strawType">
+                        <label for="selectedStrawType"><b>Tipo de bíombilla:</b></label>
+                        <select matTooltip="Seleccione un tipo de bíombilla para filtrar" class="form-control custom-select" name="selectedStrawType" id="selectedStrawType"
+                        [(ngModel)]="selectedStrawType" (change)="onChangeStrawType()">
+                            <option [ngValue]="null" selected>Elige un tipo de bíombilla</option>
+                            <option [ngValue]="strawTypes" *ngFor="let strawType of strawTypes">{{ strawType.name }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div></th>
+            <td class="mat-cell" mat-cell *matCellDef="let sizing">{{ sizing.strawType.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Peso
+                <button matTooltip="Filtrar por peso" class="button-filter" mat-icon-button (click)="toggleFilter('startWeight')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startWeight']" class="filter-window filter-window-weight" id="filterWindow" #weightFilter>
+                    <div class="col">
+                        <div class="weight">
+                            <label for="startWeight" class="label-bales"><b>Peso:</b></label>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese mínimo para filtrar" type="number" class="form-group-weight-min" name="startWeight" id="startWeight"
+                                    [(ngModel)]="search.startWeight" placeholder=" ">
+                                    <label class="min-label" for="startWeight">Mínimo</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese máximo para filtrar" type="number" class="form-group-weight-max" name="endWeight" id="endWeight"
+                                    [(ngModel)]="search.endWeight" placeholder=" ">
+                                    <label for="endWeight">Máximo</label>
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadSizings()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let sizing" class="content-center">{{ sizing.weight }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Cantidad
+                <button matTooltip="Filtrar por cantidad" class="button-filter" mat-icon-button (click)="toggleFilter('startAmount')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startAmount']" class="filter-window filter-window-amount" id="filterWindow" #amountFilter>
+                    <div class="col">
+                        <div class="amount">
+                            <label for="startAmount" class="label-amount"><b>Cantidad:</b></label>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese mínimo para filtrar" type="number" class="form-group-amount-min" name="startAmount" id="startAmount"
+                                    [(ngModel)]="search.startAmount" placeholder=" ">
+                                    <label class="min-label" for="startWeight">Mínimo</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese máximo para filtrar" type="number" class="form-group-amount-max" name="endAmount" id="endAmount"
+                                    [(ngModel)]="search.endAmount" placeholder=" ">
+                                    <label for="endAmount">Máximo</label>
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadSizings()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let sizing" class="content-center">{{ sizing.amount }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>
+                Fecha
+                <button matTooltip="Filtrar por fecha" class="button-filter" mat-icon-button (click)="toggleFilter('startDate')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startDate']" class="filter-window filter-window-date" id="filterWindow">
+                    <div class="col">
+                        <div class="date">
+                            <label for="startDate"><b>Fecha:</b></label>
+                            <div class="date-input">
+                                <div class="input-group">
+                                <input matTooltip="Ingrese la fecha inicial para filtrar" type="date" class="form-control-date" name="startDate" id="startDate" [(ngModel)]="search.startDate" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="date-input">
+                                <label for="endDate"></label>
+                                <div class="input-group">
+                                <input matTooltip="Ingrese la fecha final para filtrar" type="date" class="form-control-date" name="endDate" id="endDate" [(ngModel)]="search.endDate" placeholder=" ">
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadSizings()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let sizing" class="text-center">{{ sizing.date | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="hour">
+            <th mat-header-cell *matHeaderCellDef>Hora
+                <button matTooltip="Filtrar por hora" class="button-filter" mat-icon-button (click)="toggleFilter('hour')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let reception" class="text-center">{{ formatLocalTime(reception.hour) }}</td>
+        </ng-container>
+        
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row
+            (click)="navigateToUpdateSizing(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"
+            matTooltip="Editar dimensionado"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[12]"
+                    showFirstLastButtons
+                    aria-label="Select page of sizings">
+        </mat-paginator>
+    </div>
+</div>

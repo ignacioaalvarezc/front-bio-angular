@@ -1,0 +1,205 @@
+.card {
+    margin-top: 40px;
+    margin-left: -4.5rem;
+    margin-right: 0.8rem;
+    height: 740px;
+    border: 2px solid #ccc;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+    margin-top: 10px;
+    margin-bottom: 18px;
+}
+
+.divider {
+    margin: -12px 15px;
+}
+
+
+.first-row {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.responsible-input {
+    min-width: 40%;
+    width: 100%;
+}
+
+.date-field {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    .date-label {
+        margin-left: -17px;
+    }
+    .date-input,
+    .time-input {
+        border: none;
+    }
+    .time-label {
+        margin-right: 40px;
+    }
+}
+
+.second-row {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.accepted-bales-field {
+    width: 90%;
+    margin-right: 20px;
+}
+
+.textarea-field {
+    width: 100%;
+    margin-top: 20px;
+}
+.buttons {
+    margin-top: 40px;
+    .icon-btn {
+        margin-top: 2px;
+    }
+    .add-button {
+        background-color: #0d4380c1;
+        color: white;
+    }
+    .clean-button {
+        margin-left: 40px;
+        margin-right: 40px;
+        background-color: #c17f227d;
+        color: white;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}
+
+.sanitized-cars {
+    margin-top: 20px;
+    margin-left: 20rem;
+    margin-right: 20rem;
+    height: 140px;
+    border: 2px solid #ccc;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.provider-fields {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    .provider-select {
+        width: 100%;
+    }
+}
+
+.objects-container {
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+.addings {
+    margin-top: -20px;
+}
+
+.sanitized-button {
+    display: flex;
+    justify-content: center;
+}
+
+
+  .objects-container::-webkit-scrollbar {
+      display: none;
+  }
+  
+  .objects-container::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 3px;
+      width: 6px
+  }
+
+
+.form-group {
+    margin-top: 10px;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  
+  .form-group input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    transition: border-bottom-color 0.25s ease-in-out;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+  }
+  
+  .form-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #999;
+    pointer-events: none;
+    transition: top 0.25s ease-in-out, font-size 0.25s ease-in-out, color 0.25s ease-in-out;
+  }
+  
+  
+  .form-group .label-type {
+    margin-left: 150px;
+  }
+
+  .label-amount {
+    margin-left: 26px;
+  }
+
+  .label-rejected-weight {
+    margin-left: 220px;
+  }
+
+
+  
+  
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label {
+    top: -20px;
+    font-size: 0.9em;
+    color: #007bff;
+  }
+
+@media (min-height: 850px) {
+    .card {
+        height: 750px;
+    }
+}
+
+@media (min-height: 940px) {
+    .card {
+        height: 800px;
+    }
+}
+@media (min-height: 1000px) {
+    .card {
+        height: 870px;
+    }
+}
+
+
+
+
+

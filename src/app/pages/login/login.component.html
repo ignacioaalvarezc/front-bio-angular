@@ -1,0 +1,29 @@
+<div class="login-card">
+    <div class="container">
+        <div class="col-md-6 offset-md-3">
+            <mat-card>
+                <div class="logo">
+                    <img src="../../../assets/images/logo.png" width="130" height="100">
+                </div>
+                <h1 class="text-center">Inicio de sesión</h1>
+                <form (ngSubmit) = "formSubmit()">
+                    <mat-form-field class="wi80 center input-form" appearance="outline">
+                        <mat-label>Nombre de usuario</mat-label>
+                        <input [(ngModel)] = "loginData.username" name = "username" required matInput placeholder = "Ingrese su nombre de usuario">
+                    </mat-form-field>
+                    <mat-form-field class="wi80 mt20 center" appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                        <input [(ngModel)] = "loginData.password" name = "password" required type="password" matInput placeholder = "Ingrese su contraseña" #passwordInput>
+                        <button mat-icon-button type="button" matSuffix (click)="togglePasswordVisibility(passwordInput)" matTooltip="{{ hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña' }}">
+                            <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <br><br>
+                    <div class="btn">
+                        <button type="submit" mat-raised-button color="primary">Ingresar</button>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

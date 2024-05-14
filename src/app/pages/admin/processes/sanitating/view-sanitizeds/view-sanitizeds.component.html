@@ -1,0 +1,88 @@
+<mat-card class="card">
+    <h2 class="text-center title">SANITIZADO</h2>
+    <mat-action-list class="buttons">
+        <button routerLink="/admin/add-sanitatings" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Añadir sanitizado</button>
+        <button routerLink="/admin" mat-raised-button class="back-button"><mat-icon class="icon-btn">keyboard_backspace</mat-icon>Volver</button>
+    </mat-action-list>
+</mat-card>
+
+<div class="table">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+        
+        <ng-container matColumnDef="sanitizedBoxId">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let sanitizeds"> {{sanitizeds.sanitizedBoxId}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="responsible">
+            <th mat-header-cell *matHeaderCellDef>Operador</th>
+            <td mat-cell *matCellDef="let sanitizeds">{{sanitizeds.responsible ? sanitizeds.responsible.name: 'N/A'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="strawType">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Dimensionado</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center"c>{{sanitizeds.strawType ? sanitizeds.strawType.name : 'N/A'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="weightBeforeDrying">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Peso seco inicial</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center">{{sanitizeds.weightBeforeDrying}}g</td>
+        </ng-container>
+        <ng-container matColumnDef="hourSanitized">
+            <th mat-header-cell *matHeaderCellDef> Hora de sanitizado </th>
+            <td mat-cell *matCellDef="let sanitizeds" class="text-center">{{ sanitizeds.hourSanitized }}</td>
+        </ng-container>
+        <ng-container matColumnDef="wetWeight">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Peso húmedo</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center">{{sanitizeds.wetWeight}}g</td>
+        </ng-container>
+        <ng-container matColumnDef="hourDryingBegin">
+            <th mat-header-cell *matHeaderCellDef> Hora de sanitizado </th>
+            <td mat-cell *matCellDef="let sanitizeds" class="text-center">{{ sanitizeds.hourDryingBegin }}</td>
+        </ng-container>
+        <ng-container matColumnDef="hourDryingEnd">
+            <th mat-header-cell *matHeaderCellDef> Hora de sanitizado </th>
+            <td mat-cell *matCellDef="let sanitizeds" class="text-center">{{ sanitizeds.hourDryingEnd }}</td>
+        </ng-container>
+        <ng-container matColumnDef="weightAfterDrying">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Peso seco final</th>
+            <td mat-cell *matCellDef="let sanitatings" class="content-center">{{sanitatings.weightAfterDrying}}g</td>
+        </ng-container>
+        <ng-container matColumnDef="hoursBetweenDryingBeginAndEnding">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Horas entre el sanitizado y el secado</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center">{{sanitizeds.hoursBetweenDryingBeginAndEnding}}</td>
+        </ng-container>
+        <ng-container matColumnDef="weightGainPercentage">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Porcentaje de peso ganado (%)</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center">{{sanitizeds.weightGainPercentage}}</td>
+        </ng-container>
+        <ng-container matColumnDef="waterRetentionPercentage">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Porcentaje de retención de agua (%)</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center">{{sanitizeds.waterRetentionPercentage}}</td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let sanitizeds" class="text-center">{{ sanitizeds.date | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="observations">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Observaciones</th>
+            <td mat-cell *matCellDef="let sanitizeds" class="content-center">{{sanitizeds.observations}}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row 
+            (click)="navigateToUpdateSanitizedBox(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"
+            matTooltip="Editar caja de sanitizado"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[13]"
+                    showFirstLastButtons
+                    aria-label="Select page of sanitizeds">
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+.card {
+    margin-top: 0px;
+    overflow: hidden;
+    height: 480px;
+    .divider {
+        margin: -12px 15px;
+        margin-bottom: 30px;
+    }
+    .action-icons {
+        display: flex;
+        justify-content: right;
+        .delete-icon {
+            margin-right: -130px;
+            margin-left: 20px;
+            color: red;
+        }
+        .text-red {
+            color: red;
+        }
+        
+        .text-green {
+            color: green;
+        }
+    }
+    .field {
+        margin-bottom: 10px;
+    }
+    .textarea-field {
+        height: 140px;
+    }
+    .buttons {
+        margin-top: 25px;
+        display: flex;
+        margin-left: -10px;
+        .add-button {
+            background-color: #0d4380c1;
+            color: white;
+            margin-right: 20px;
+        }
+        .clean-button {
+            background-color: #c17f227d;
+            color: white;
+            margin-right: 20px;
+        }
+        .back-button {
+            color: white;
+            background-color: rgba(170, 31, 31, 0.835);
+            margin-right: -10px;
+        }
+    }
+}
+
+
+
+
+
+
+
+

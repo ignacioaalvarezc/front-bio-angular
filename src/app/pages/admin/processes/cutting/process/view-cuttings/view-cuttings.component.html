@@ -1,0 +1,220 @@
+<mat-card class="card">
+    <h2 class="title">CORTES DE NUDO</h2>
+    <mat-action-list class="buttons">
+        <button matTooltip="Añadir corte" routerLink="/admin/add-cuttings" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Añadir</button>
+        <button matTooltip="Vovler atras" routerLink="/admin" mat-raised-button class="back-button"><mat-icon class="icon-btn">keyboard_backspace</mat-icon>Volver</button>
+    </mat-action-list>
+    <mat-divider class="divider"></mat-divider>
+<div class="content">
+    <div class="report-buttons">
+        <button matTooltip="Exportar a PDF" mat-button class="pdf" (click)="exportPdf()"><img src="../../../../../../assets/images/icono-PDF.png" alt="Pdf" class="pdf-icon"/></button>
+        <button matTooltip="Exportar a EXCEL" class="excel" (click)="exportExcel()"><img src="../../../../../../assets/images/icono-EXCEL.png" alt="Excel" class="excel-icon"/></button>
+    </div>
+    <div class="filters">
+        <div class="filter-buttons">
+            <button mat-icon-button matTooltip="Deshacer filtros" aria-label="Deshacer" (click)="clearDateFilter()" class="undo-filter-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-table mat-table-custom">
+        
+        <ng-container matColumnDef="cuttingId">
+            <th mat-header-cell *matHeaderCellDef class="process-header">
+                Proceso 
+                <button matTooltip="Filtrar por proceso" class="button-filter" mat-icon-button (click)="toggleFilter('cuttingId')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let cutBoxes"> {{ cutBoxes.cutting.cuttingId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cutBoxId">
+            <th mat-header-cell *matHeaderCellDef>
+                Id 
+                <button matTooltip="Filtrar por ID" class="button-filter" mat-icon-button (click)="toggleFilter('receptionId')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let cutBoxes"> {{ cutBoxes.cutBoxId }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="responsible">
+            <th mat-header-cell *matHeaderCellDef> 
+                Operador 
+                <button matTooltip="Filtrar por responsable" class="button-filter" mat-icon-button (click)="toggleFilter('responsible')">
+                <mat-icon class="filter-icon">filter_alt</mat-icon>
+              </button>
+              <div *ngIf="showFilter['responsible']" class="filter-window filter-window-responsible" id="filterWindow" #responsibleFilter>
+                <div class="col">
+                    <div class="form-group-responsible">
+                        <label for="selectedResponsible"><b>Responsable:</b></label>
+                        <select matTooltip="Seleccione un responsable para filtrar" class="form-control custom-select" name="selectedResponsible" id="selectedResponsible"
+                        [(ngModel)]="selectedResponsible" (change)="onChangeResponsible()">
+                            <option [ngValue]="null" selected>Elige un responsable</option>
+                            <option [ngValue]="responsible" *ngFor="let responsible of responsibles">{{ responsible.name }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div></th>
+            <td class="mat-cell" mat-cell *matCellDef="let cutBoxes">{{ cutBoxes.responsible.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cutType">
+            <th mat-header-cell *matHeaderCellDef class="content-center"> 
+                Tipo de corte 
+                <button matTooltip="Filtrar por tipo de corte" class="button-filter" mat-icon-button (click)="toggleFilter('cutType')">
+                <mat-icon class="filter-icon">filter_alt</mat-icon>
+              </button>
+              <div *ngIf="showFilter['cutType']" class="filter-window filter-window-responsible" id="filterWindow" #cutTypeFilter>
+                <div class="col">
+                    <div class="form-group-responsible">
+                        <label for="selectedCutType"><b>Tipo de corte:</b></label>
+                        <select matTooltip="Seleccione un tipo de corte para filtrar" class="form-control custom-select" name="selectedCutType" id="selectedCutType"
+                        [(ngModel)]="selectedCutTypes" (change)="onChangeCutType()">
+                            <option [ngValue]="null" selected>Elige un tipo de corte</option>
+                            <option [ngValue]="cutType" *ngFor="let cutType of cutTypes" class="content-center">{{ cutType.name }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div></th>
+            <td class="mat-cell" mat-cell *matCellDef="let cutBoxes" class="content-center">{{ cutBoxes.cutType.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Peso
+                <button matTooltip="Filtrar por peso" class="button-filter" mat-icon-button (click)="toggleFilter('startWeight')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startWeight']" class="filter-window filter-window-accepted" id="filterWindow" #weightFilter>
+                    <div class="col">
+                        <div class="accepted-bales">
+                            <label for="startWeight" class="label-bales"><b>Peso:</b></label>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese mínimo para filtrar" type="number" class="form-group-bales-min" name="startWeight" id="startWeight"
+                                    [(ngModel)]="search.startWeight" placeholder=" ">
+                                    <label class="min-label" for="startWeight">Mínimo</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese máximo para filtrar" type="number" class="form-group-bales-max" name="endWeight" id="endWeight"
+                                    [(ngModel)]="search.endWeight" placeholder=" ">
+                                    <label for="endWeight">Máximo</label>
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadCutBoxes()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{ cutBoxes.weight }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="factor">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Factor 
+                <button matTooltip="Filtrar por factor" class="button-filter" mat-icon-button (click)="toggleFilter('factor')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let cutBoxes" class="content-center"> {{ cutBoxes.cutType.factor }}</td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Cantidad de bíombillas
+                <button matTooltip="Filtrar por cantidad de bíombillas" class="button-filter" mat-icon-button (click)="toggleFilter('startAmount')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startAmount']" class="filter-window filter-window-rejected" id="filterWindow">
+                    <div class="col">
+                        <div class="rejected-bales">
+                            <label for="startAmount"><b>Cantidad de bíombillas:</b></label>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input matTooltip="Ingrese mínimo para filtrar" type="number" class="form-group-bales-min" name="startAmount" id="startAmount"
+                                    [(ngModel)]="search.startAmount" placeholder=" ">
+                                    <label for="startAmount">Mínimo</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input matTooltip="Ingrese máximo para filtrar" type="number" class="form-group-bales-max" name="endAmount" id="endAmount"
+                                        [(ngModel)]="search.endAmount" placeholder=" ">
+                                        <label for="endAmounts">Máximo</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadCutBoxes()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{ cutBoxes.amount }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef class="content-center">
+                Fecha
+                <button matTooltip="Filtrar por fecha" class="button-filter" mat-icon-button (click)="toggleFilter('startDate')">
+                    <mat-icon class="filter-icon">filter_alt</mat-icon>
+                  </button>
+                  <div *ngIf="showFilter['startDate']" class="filter-window filter-window-date" id="filterWindow">
+                    <div class="col">
+                        <div class="date">
+                            <label for="startDate"><b>Fecha:</b></label>
+                            <div class="date-input">
+                                <div class="input-group">
+                                <input matTooltip="Ingrese la fecha inicial para filtrar" type="date" class="form-control-date" name="startDate" id="startDate" [(ngModel)]="search.startDate" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="date-input">
+                                <label for="endDate"></label>
+                                <div class="input-group">
+                                <input matTooltip="Ingrese la fecha final para filtrar" type="date" class="form-control-date" name="endDate" id="endDate" [(ngModel)]="search.endDate" placeholder=" ">
+                                </div>
+                            </div>
+                            <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="loadCutBoxes()"><mat-icon class="filter-icon">filter_alt</mat-icon></button>
+                        </div>
+                    </div>
+                  </div></th>
+            <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{ cutBoxes.date | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="hour">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Hora
+                <button matTooltip="Filtrar por hora" class="button-filter" mat-icon-button (click)="toggleFilter('hour')">
+                    <mat-icon class="filter-icon display-icon">filter_alt</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{ formatLocalTime(cutBoxes.hour) }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row 
+            (click)="navigateToUpdateCutBox(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"
+            matTooltip="Editar caja de corte"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[12]"
+                    showFirstLastButtons
+                    aria-label="Select page of cuttings">
+        </mat-paginator>
+    </div>
+</div>
+
+</mat-card>
+

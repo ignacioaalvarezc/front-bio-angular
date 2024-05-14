@@ -1,0 +1,100 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">REGISTRAR UN NUEVO CORTE DE NUDOS</h2>
+    <mat-divider class="divider" style="margin-top: 8px;"></mat-divider>
+    <mat-divider class="divider" style="margin-top: -8px;"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "saveCutting()">
+
+                <mat-form-field appearance="outline" class="responsible-input">
+                    <mat-label class="select-label">Operador</mat-label>
+                    <mat-select matTooltip="Seleccione el operador a cargo" name="responsible" [(ngModel)]= "cutBoxData.responsible.responsibleId">
+                        <mat-option class="input" *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                            {{ r.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <div class="worked-hours">
+                    <div class="form-group total-hours">
+                        <input 
+                            [(ngModel)]="cuttingData.totalHours"
+                            type="number"
+                            name="hours"
+                            placeholder=" "
+                            matTooltip="Ingrese las horas completadas">
+                        <label class="totalHours">Horas</label>
+                    </div>
+                    <div class="form-group total-minutes">
+                        <input 
+                            [(ngModel)]="cuttingData.totalMinutes"
+                            type="number"
+                            name="minutes"
+                            placeholder=" "
+                            matTooltip="Ingrese los minutos sobrantes">
+                        <label for="totalMinutes">Minutos</label>
+                    </div>
+                </div>
+                <div class="container-objects">
+                    <div class="col-md-6 ml-10">
+                        <div class="objects-container-left addings">
+                            <div *ngFor="let c of cutBoxes; let i = index">
+                                <div class="adding-inputs form-group">
+                                        <input matTooltip="Ingrese el peso en gramos de la caja {{c.cutType.name}}" type="number" [(ngModel)]="c.weight" name="weight{{c.weight}}" placeholder="" required (change)="calculateAmount(c)">
+                                        <label for="weight">{{ c.cutType.name }}</label>
+                                    <i matTooltip="Eliminar" class="remove-icon" (click)="removeCutBox(i)"><mat-icon>close</mat-icon></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="objects-container-right">
+                            <div *ngFor="let e of extraTasks; let i = index">
+                                <div class="extra-time">
+                                    <mat-label class="time-label">Hora de inicio: </mat-label>
+                                    <input class="input-time" type="time" [(ngModel)]="e.startTaskTime" name="startTaskTime{{e.startTaskTime}}" required>
+                                    <mat-label class="time-label">Hora de termino: </mat-label>
+                                    <input type="time" class="input-time" [(ngModel)]="e.endTaskTime" name="endTaskTime{{e.endTaskTime}}"required>
+                                </div>
+                                <div class="activity">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label for="activity">Actividad</mat-label>
+                                        <mat-select [(ngModel)]= "e.activity.activityId" name="activity{{e.activity}}" placeholder=" " class="activity-field">
+                                            <mat-option class="input" *ngFor="let a of activities" [value]="a.activityId">
+                                                {{ a.name }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>          
+                                    <i matTooltip="Eliminar tarea extra" class="remove-icon" (click)="removeExtraTasks(i)"><mat-icon>close</mat-icon></i>
+                                </div>
+                            </div>
+                        </div>           
+                    </div> 
+                        
+                    <!-- BUTTON TO ADD A NEW TASK OBJECT -->
+                    <div class="container-add-btn container-buttons">
+                        <button matTooltip="Agregar cajas de corte" type="button" class="add-obj-btns add-cut-btn" mat-raised-button (click)="addObjet()"><mat-icon class="icon-btn">add</mat-icon>Corte</button>
+                        <button matTooltip="Agregar una actividad extra" type="button" class="add-obj-btns add-act-btn" mat-raised-button (click)="addObjetTask()"><mat-icon class="icon-btn">add</mat-icon>Extra</button>
+                    </div>    
+                </div> 
+                
+                <div class="textarea-field form-group" appearance="fill">
+                    <textarea 
+                        class= "textarea"
+                        [(ngModel)]= "cuttingData.observations"
+                        type="text"
+                        name="reasonRejected"
+                        placeholder=" "
+                        matInput
+                        rows="6">
+                    </textarea>
+                    <label class="label">Observaciones</label>
+                </div>
+                <div class="container text-center buttons">
+                    <button mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar</button>
+                    <button type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                    <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</mat-card>

@@ -1,0 +1,40 @@
+<mat-card class="card">
+    <h2 class="text-center mt10">AGREGAR UN NUEVO TIPO DE BÍOMBILLA</h2>
+    <mat-divider class="divider"></mat-divider>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row mt30">
+                    <div class="col-md-6 offset-md-3 form">
+                        <form (ngSubmit) = "formSubmit()">
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input required [(ngModel)] = "strawType.name" name="name" type="text" matInput placeholder="Ingrese el nombre del tipo de bíombilla">
+                            </mat-form-field>
+
+                            <div class="observations-field">
+                                <mat-form-field class="textarea-field full-width" appearance="fill">
+                                    <mat-label>Descripción</mat-label>
+                                        <textarea 
+                                            [(ngModel)]= "strawType.description"
+                                            type="text"
+                                            name="description"
+                                            placeholder="Ingrese una descripción"
+                                            matInput
+                                            rows="6">
+                                        </textarea>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="text-center buttons input">
+                                <button mat-raised-button class="add-button">Registrar</button>
+                                <button type="reset" mat-raised-button class="clean-button">Limpiar</button>
+                                <button type="reset" (click) = "goBack()" mat-raised-button class="back-button">Volver</button>
+                            </div>
+                        </form>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+</mat-card>

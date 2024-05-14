@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<div class="head" [ngClass]="getHeadClass()">
+    <div class="head-content">
+        <div class="head-content-left">
+            <div class="title-container">
+                <div class="title-user" (click)="toHome()">
+                    <h2>Bienvenido {{ user.name | titlecase }} {{ user.lastName | titlecase }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="head-content-right">
+            <div class="head-menu">
+                <div class="head-menu-item">
+                    <button class="head-menu-item-btn ripple" [cdkMenuTriggerFor]="notificationOverlay">
+                        <i class="far fa-bell menu-icon"></i>
+                        <div *ngIf="unprocessedOrdersCount > 0" class="floating-circle pulse">{{ unprocessedOrdersCount }}</div>
+                    </button>
+                </div>
+                <div class="head-menu-item">
+                    <button class="head-menu-item-btn ripple">
+                        <i class="far fa-comment-alt menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="head-user-avatar-container">
+                <div class="head-user-avatar" [cdkMenuTriggerFor]="userOverlay">
+                    <img src="../../../assets/images/default-profile.jpg" alt="" class="user-avatar">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #notificationOverlay>
+    <div class="overlay overlay-notification overlay-fall" cdkMenu>
+        <ul>
+           
+                <div class="notification-head"><strong>Ordenes</strong></div>
+     
+        </ul>
+        <ul>
+            <li routerLink="/user-dashboard/view-pendings/" class="link" cdkMenuItem>
+                <div class="align-items">
+                    <mat-icon class="notification-icon">alarm</mat-icon>
+                    <div class="notification-subject">
+                        Pedidos pendientes
+                    </div>
+                </div>
+                <p class="notification-desc">
+                    {{unprocessedOrdersCount}} pedidos pendientes
+                </p>        
+            </li>
+            <li routerLink="/user-dashboard/view-complete-orders/" class="complete-orders" class="link" cdkMenuItem>
+                <div class="align-items">
+                    <mat-icon class="notification-icon">assignment_turned_in</mat-icon>
+                    <div class="notification-subject">
+                        Pedidos completados
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ng-template>
+
+
+
+<ng-template #userOverlay>
+    <div class="overlay overlay-user overlay-fall" cdkMenu>
+        <ul>
+           
+            <div class="profile-head"><strong>Menu</strong></div>
+ 
+        </ul>
+        <ul>
+            <li routerLink="/profile" class="link" cdkMenuItem>
+                <div class="profile-align">
+                    <mat-icon class="profile-icon">account_circle</mat-icon>
+                    <div div class="profile-subject">
+                        Perfil
+                    </div>
+                </div>
+            </li>
+            <li routerLink="user-dashboard/index-inventory" class="link" cdkMenuItem>
+                <div class="profile-align">
+                    <mat-icon class="profile-icon">find_in_page</mat-icon>
+                    <div div class="profile-subject">
+                        Inventarios
+                    </div>
+                </div>
+            </li>
+            <li (click)="logout()" class="link" cdkMenuItem>
+                <div class="profile-align">
+                    <mat-icon class="profile-icon">exit_to_app</mat-icon>
+                    <div div class="profile-subject">
+                        Cerrar sesión
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ng-template>
+

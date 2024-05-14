@@ -1,0 +1,54 @@
+.card {
+    margin-top: -120px;
+    margin-left: -100px;
+    min-height: 700px;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.divider {
+    margin: -12px 15px;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+    .delete-icon {
+        margin-left: 30px;
+        color: red;
+    }
+    
+}
+
+.field {
+    margin-bottom: 25px;
+}
+
+.buttons {
+    margin-top: 35px;
+    .update-button {
+        background-color: #0d4380c1;
+        color: white;
+    }
+    .clean-button {
+        margin-left: 40px;
+        margin-right: 40px;
+        background-color: #c17f227d;
+        color: white;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}

@@ -1,0 +1,58 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">ACTUALIZA EL DIMENSIONADO N° {{ sizing.sizedBasketId }}</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "updateSizing()">
+                <mat-form-field appearance="fill" class="responsible-input">
+                    <mat-label>Responsable</mat-label>
+                    <mat-select name="responsible" [(ngModel)]= "sizing.responsible.responsibleId">
+                        <mat-option *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                            {{ r.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="responsible-input">
+                    <mat-label>Tipo de bíombilla</mat-label>
+                    <mat-select name="strawType" [(ngModel)]= "sizing.strawType.strawTypeId">
+                        <mat-option *ngFor= "let s of strawTypes" [value]="s.strawTypeId">
+                            {{ s.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="date-field">
+                    <mat-label class="date-label">Fecha: </mat-label>
+                    <input 
+                        [(ngModel)]="sizing.date"
+                        type="date"
+                        name="date">
+                        <mat-label class="time-label">Hora: </mat-label>
+                        <input 
+                            [(ngModel)]="sizing.hour"
+                            type="time"
+                            name="time">
+                </div>
+                <div class="row second-row">
+                    <div class="col-md-6">
+                        <mat-form-field class="accepted-bales-field" appearance="fill">
+                            <mat-label>Peso</mat-label>
+                            <input 
+                            [(ngModel)]= "sizing.weight"
+                            type="number"
+                            name="weight"
+                            placeholder="Ingrese peso"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="container text-center buttons">
+                    <button mat-raised-button class="add-button"><mat-icon class="icon-btn">autorenew</mat-icon>Actualizar recepción</button>
+                    <button type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                    <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

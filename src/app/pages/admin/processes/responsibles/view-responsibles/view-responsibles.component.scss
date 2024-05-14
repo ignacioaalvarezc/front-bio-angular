@@ -1,0 +1,89 @@
+.card {
+    margin-top: -130px;
+    margin-left: -100px;
+    height: 820px;
+    width: 110%;
+    .title {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .buttons {
+        margin-top: -10px;
+        display: flex;
+        justify-content: space-between;
+        .icon-btn {
+            margin-top: 2px;
+        }
+        .add-button {
+            background-color: #0d4380c1;
+            color: white;
+            margin-left: 1rem;
+            margin-top: -20px;
+            margin-bottom: 10px;
+        }
+        .back-button {
+            color: white;
+            background-color: rgba(170, 31, 31, 0.835);
+            margin-right: 1rem;
+            margin-top: -20px;
+        }
+    }
+    .divider {
+        margin: -12px 15px;
+        height: 2px;
+        background-color: #ccc; 
+        margin-top: 2px;
+        margin-bottom: 10px;
+      }
+}
+
+.table {
+    margin-top: 10px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    .mat-mdc-row {
+        height: 37px;
+    }
+}
+
+.filter-icon {
+    font-size: 20px;
+    margin-bottom: -8px;
+    color: green;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+  
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+  
+.demo-row-is-clicked {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.icon-center {
+    text-align: center;
+    right: -200px;
+}
+
+.paginator {
+    display: flex;
+    justify-content: center;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-green {
+    color: green;
+}
+
+

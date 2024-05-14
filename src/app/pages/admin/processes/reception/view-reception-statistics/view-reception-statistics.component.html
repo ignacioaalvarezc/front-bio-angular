@@ -1,0 +1,111 @@
+<div class="cardBox">
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ totalAcceptedBalesOfYear }}</div>
+            <div class="cardName">Fardos aceptados {{ currentYear }}</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon></mat-icon>
+        </div>
+    </div>
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ totalRejectedBalesOfYear }}</div>
+            <div class="cardName">Fardos rechazados {{ currentYear }}</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon></mat-icon>
+        </div>
+    </div>
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ percentageRejectedBales | number: '1.2-2' }}%</div>
+            <div class="cardName">Porcentaje de fardos rechazados {{ currentYear }}</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon></mat-icon>
+        </div>
+    </div>
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ totalAcceptedBales }}</div>
+            <div class="cardName">Total de fardos aceptados</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon></mat-icon>
+        </div>
+    </div>
+</div>
+
+<div class="graphBox">
+    <div class="chart">
+        <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [dataLabels]="chartOptions.dataLabels"
+            [plotOptions]="chartOptions.plotOptions"
+            [responsive]="chartOptions.responsive"
+            [xaxis]="chartOptions.xaxis"
+            [legend]="chartOptions.legend"
+            [fill]="chartOptions.fill"
+  ></apx-chart>
+    </div>
+    <div class="box">
+    </div>
+</div>
+
+<div class="details">
+    <div class="recentOrders">
+        <div class="cardHeader">
+            <h2>Recepciones recientes</h2>
+            <button mat-raised-button routerLink="/admin/view-receptions" class="btn">Ver todo</button>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+            <ng-container matColumnDef="responsible">
+                <th mat-header-cell *matHeaderCellDef class="mat-header-cell">Operador<th>
+                <td mat-cell *matCellDef="let receptions">{{receptions.responsible.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="acceptedBales">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell">Fardos aceptados</th>
+                <td mat-cell *matCellDef="let receptions" class="content-center accepted-data">{{receptions.acceptedBales}}</td>
+            </ng-container>
+            <ng-container matColumnDef="rejectedBales">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell">Fardos rechazados</th>
+                <td mat-cell *matCellDef="let receptions" class="content-center">{{receptions.rejectedBales}}</td>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell"> Fecha </th>
+                <td mat-cell *matCellDef="let receptions" class="content-center text-center">{{ receptions.date | date: 'dd/MM/yyyy' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="endTime">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell"> Hora </th>
+                <td mat-cell *matCellDef="let receptions" class="content-center">{{ formatLocalTime(receptions.endTime) }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+        </table>
+    </div>
+
+    <!-- TOTAL HOURS BY OPERATOR FOR CURRENT MONTH -->
+    <div class="operators-hours">
+        <div *ngIf="responsiblesWithHours" class="cardHeader">
+            <h2>Horas acumuladas</h2>
+            <button mat-raised-button routerLink="/admin/view-reception-production" class="btn">Ver todo</button>
+        </div>
+        <table class="operators-table">
+            <tr>
+                <th>#</th>
+                <th>Operador</th>
+                <th>{{'Total de horas ' + (getCurrentMonthYear() | titlecase)}}</th>
+            </tr>
+            <tr *ngFor="let item of responsiblesWithHours; let i = index">
+                <td>{{ numbers[i] }}</td>
+                <td>{{ item.responsible }}</td>
+                <td>{{ item.hours | number: '1.2-2' }}</td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="!responsiblesWithHours || responsiblesWithHours.length === 0">
+        <p>No se registran procesos de corte en el mes actual</p>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="container">
+    <mat-card class="card">
+        <h2 class="text-center title mt10 mb4">REGISTRAR UNA NUEVA RECEPCIÓN</h2>
+        <mat-divider class="divider" style="margin-top: 8px;"></mat-divider>
+        <mat-divider class="divider" style="margin-top: -8px;"></mat-divider>
+        <div class="row first-row">
+            <div class="col md-8 offset-md-2">
+                <form (ngSubmit) = "saveReception()">
+
+                    <mat-form-field appearance="outline" class="responsible-input">
+                        <mat-label>Operador</mat-label>
+                        <mat-select matTooltip="Ingrese el operador a cargo" name="responsible" [(ngModel)]= "receptionData.responsible.responsibleId">
+                            <mat-option style="border-radius: 60px;" *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                                {{ r.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="date-field">                        
+                        <mat-label class="time-label">Hora</mat-label>
+                        <input 
+                            class="time-input"
+                            [(ngModel)]="selectedHour"
+                            type="time"
+                            name="time"
+                            min="07:00"
+                            max="19:00"
+                            matTooltip="Ingrese la hora en que recibio los fardos">
+                        </div>
+
+                    <div class="second-row">
+                        <div class="form-group">
+                            <input 
+                                [(ngModel)]= "receptionData.acceptedBales"
+                                type="number"
+                                name="acceptedBales"
+                                placeholder=""
+                                required
+                                matTooltip="Ingrese la cantidad de fardos aceptados">
+                            <label for="acceptedBales">Fardos aceptados</label>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <input 
+                                    [(ngModel)]= "receptionData.rejectedBales"
+                                    type="number"
+                                    name="rejectedBales"
+                                    placeholder=""
+                                    required
+                                    matTooltip="Ingrese la cantidad de fardos rechazados">
+                                <label for="rejectedBales">Fardos rechazados</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 ml-10">
+                        <div class="textarea-field form-group" appearance="fill">
+                                <textarea 
+                                    [(ngModel)]= "receptionData.reasonRejected"
+                                    type="text"
+                                    name="reasonRejected"
+                                    placeholder=" "
+                                    matInput
+                                    rows="6"
+                                    matTooltip="Ingrese observaciones si es que las hay">
+                                </textarea>
+                                <label>Observaciones</label>
+                            </div>
+                    </div>
+                    
+                    <div class="container text-center buttons">
+                        <button matTooltip="Registrar el proceso de recepción" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar</button>
+                        <button matTooltip="Limpiar todos los campos" type="reset" mat-raised-button class="reset-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                        <button matTooltip="Volver atrás" type="reset" mat-raised-button (click)="goBack()" class="back-button"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card>
+</div>

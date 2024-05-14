@@ -1,0 +1,75 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">REGISTRAR UN NUEVO TIPO DE EMPAQUE</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "saveBoxType()">
+
+                <div class="row second-row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre</mat-label>
+                            <input 
+                            [(ngModel)]= "boxTypeData.name"
+                            type="text"
+                            name="name"
+                            placeholder="Ingrese nombre"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 ml-10">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Proveedor</mat-label>
+                            <input 
+                            [(ngModel)]= "boxTypeData.provider"
+                            type="text"
+                            name="provider"
+                            placeholder="Ingrese proveedor"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Formato</mat-label>
+                            <input 
+                            [(ngModel)]= "boxTypeData.format"
+                            type="text"
+                            name="format"
+                            placeholder="Ingrese formato"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cantidad de bíombillas</mat-label>
+                        <input 
+                        [(ngModel)]= "boxTypeData.strawAmount"
+                        type="number"
+                        name="strawAmount"
+                        placeholder="Ingrese cantidad de biombillas"
+                        matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 ml-10">
+                    <mat-form-field class="textarea-field" appearance="fill">
+                        <mat-label>Descripción</mat-label>
+                            <textarea 
+                                [(ngModel)]= "boxTypeData.description"
+                                type="text"
+                                name="description"
+                                placeholder="Ingrese una descripción"
+                                matInput
+                                rows="6">
+                            </textarea>
+                    </mat-form-field>
+                </div>
+                <div class="container text-center buttons">
+                    <button mat-raised-button color="primary">Registrar empaquetado</button>
+                    <button type="reset" mat-raised-button class="ml20" color="accent">Limpiar</button>
+                    <button type="reset" mat-raised-button class="ml20" (click)="goBack()">Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

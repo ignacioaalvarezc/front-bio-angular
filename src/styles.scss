@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+
+*,
+*::after
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body { 
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background: #f4f7fa;
+    overflow: hidden;
+ }
+
+ .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef;
+    color: #495057;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+ }
+
+ .card-body {
+    padding: 1rem 1.5rem;
+ }
+
+.html-app,
+.body-app { 
+    height: 100%; 
+}
+
+.body-app { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background: #f5f5f5;
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+/* HEIGHT */
+.h650 {
+    height: 650px !important;
+}
+
+/* WIDTH */
+.full-width {
+    width: 100%;
+}
+
+/* MARGIN TOP*/
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px !important;
+}
+
+.mt15 {
+    margin-top: 15px !important;
+}
+
+.mt20 {
+    margin-top: 20px !important;
+}
+
+.mt40 {
+    margin-top: 40px !important;
+}
+
+/* MARGIN-RIGHT */
+.mr20 {
+    margin-right: 20px !important;
+} 
+
+/* MARGIN-BOTTOM */
+.mb15 {
+    margin-bottom: 15px !important;
+}
+
+/* MARGIN-LEFT */
+.ml30 {
+    margin-left: 30px !important;
+}
+
+.ml60 {
+    margin-left: 60px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.wi80 {
+    width: 80%;
+}
+
+/* MARGIN 10PX */
+.ml10 {
+    margin-left: 10px !important;
+}
+
+.mr10 {
+    margin-right: 10px !important;
+}
+
+.mb10 {
+    margin-bottom: 10px !important;
+}
+
+/* MARGIN 20PX */
+.ml20 {
+    margin-left: 20px !important;
+}
+
+
+.mb20 {
+    margin-bottom: 20px !important;
+}
+
+/* MARGIN 30PX */
+.mt30 {
+    margin-top: 30px !important;
+}
+
+.ml30 {
+    margin-left: 30px !important;
+}
+
+.mb30 {
+    margin-bottom: 30px !important;
+}
+
+/* MARGIN 40PX */
+.mb40{
+    margin-bottom: 40px !important;
+}
+
+/* MARGIN 60PX */
+.mr60{
+    margin-right: 60px !important;
+}
+
+/* MARGIN 70PX */
+.mt70 {
+    margin-top: 70px !important;
+}

@@ -1,0 +1,31 @@
+<mat-card class="card h650">
+    <h2 class="text-center mt10">AGREGAR UN NUEVO RESPONSABLE</h2>
+    <mat-divider class="divider"></mat-divider>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row mt30">
+                    <div class="col-md-6 offset-md-3 form">
+                        <form (ngSubmit) = "formSubmit()">
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input required [(ngModel)] = "responsible.name" name="name" type="text" matInput placeholder="Ingrese el nombre del operador">
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width input" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input required [(ngModel)] = "responsible.email" name="email" type="email" matInput placeholder="Ingrese el correo electrónico del operador">
+                            </mat-form-field>
+
+                            <div class="text-center buttons input">
+                                <button mat-raised-button class="add-button">Registrar</button>
+                                <button type="reset" class="clean-button" mat-raised-button>Limpiar</button>
+                                <button type="reset" (click) = "goBack()" mat-raised-button class="back-button">Volver</button>
+                            </div>
+                        </form>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+</mat-card>

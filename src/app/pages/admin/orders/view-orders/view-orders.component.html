@@ -1,0 +1,63 @@
+<mat-card class="card">
+    <h2 class="title">ÓRDENES</h2>
+    <mat-action-list class="buttons text-center">
+        <button routerLink="/admin/add-orders" mat-raised-button class="add-button"><mat-icon class="icon-btn">add</mat-icon>Añadir orden</button>
+        <button routerLink="/admin" mat-raised-button class="back-button"><mat-icon class="icon-btn">keyboard_backspace</mat-icon>Volver</button>
+    </mat-action-list>
+</mat-card>
+
+
+
+<div class="table">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+        
+        <ng-container matColumnDef="orderNumber">
+            <th mat-header-cell *matHeaderCellDef>N° Orden</th>
+            <td mat-cell *matCellDef="let orders"> {{ orders.orderNumber }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="boxType">
+            <th mat-header-cell *matHeaderCellDef>Producto</th>
+            <td mat-cell *matCellDef="let orders">{{orders.boxType.provider | titlecase | slice:0:3}} {{orders.boxType.name}} {{orders.boxType.format | titlecase}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="packagesNumber">
+            <th mat-header-cell *matHeaderCellDef class="content-center"> Cantidad de cajas</th>
+            <td mat-cell *matCellDef="let orders" class="content-center">{{ orders.packagesNumber}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="strawsNumber">
+            <th mat-header-cell *matHeaderCellDef class="content-center">Cantidad de bíombillas</th>
+            <td mat-cell *matCellDef="let orders" class="content-center">{{ orders.strawsNumber }}</td>
+        </ng-container>
+        <ng-container matColumnDef="pickUpDate">
+            <th mat-header-cell *matHeaderCellDef> Fecha de retiro</th>
+            <td mat-cell *matCellDef="let orders" class="text-center">{{ orders.pickUpDate | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="pickUpHour">
+            <th mat-header-cell *matHeaderCellDef> Hora de retiro</th>
+            <td mat-cell *matCellDef="let orders" class="text-center">{{ orders.pickUpHour }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let orders" [ngClass]="{'text-green': orders.enabled, 'text-red': !orders.enabled}">{{ orders.enabled ? "Completo" : "Incompleto" }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row
+            (click)="navigateToUpdateOrder(row)"
+            [class.demo-row-is-clicked]="clickedRows.has(row)"
+            [class.hovered-row]="hoveredRows.has(row)"
+            (mousenter)="onRowMouseEnter(row)"
+            (mouseleave)="onRowMouseLeave(row)"
+            *matRowDef="let row; columns: columns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[10]"
+                    showFirstLastButtons
+                    aria-label="Select page of orders">
+        </mat-paginator>
+    </div>
+</div>

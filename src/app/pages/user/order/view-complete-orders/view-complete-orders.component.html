@@ -1,0 +1,70 @@
+<div class="date">
+    <mat-form-field class="start-date">
+        <mat-label class="label-start-date">Desde</mat-label>
+        <input matInput class="input" [matDatepicker]="startDatePicker" placeholder="Inicio" [(ngModel)]="startDate">
+        <mat-datepicker-toggle class="input-calendar" matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="end-date">
+        <mat-label class="label-end-date">Hasta</mat-label>
+        <input matInput class="input" [matDatepicker]="endDatePicker" placeholder="Fin" [(ngModel)]="endDate">
+        <mat-datepicker-toggle class="input-calendar" matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+    <div class="filter-buttons">
+        <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" (click)="applyFilters()" class="filter-button">
+            <mat-icon class="filter-icon">filter_alt</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Deshacer filtros" aria-label="Filtrar" (click)="clearDateFilter()" class="undo-filter-button">
+            <mat-icon class="filter-icon">close</mat-icon>
+        </button>
+    </div>
+</div>
+
+
+<div class="table">
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+        
+        <ng-container matColumnDef="orderId">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell">Id</th>
+            <td mat-cell *matCellDef="let orders">{{orders.orderId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="boxType">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell">Tipo de paquete</th>
+            <td mat-cell *matCellDef="let orders">{{orders.boxType.provider | titlecase | slice:0:3}} {{orders.boxType.name}} {{orders.boxType.format | titlecase}}</td>
+        </ng-container>
+        <ng-container matColumnDef="packagesNumber">
+            <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell">Cantidad de cajas</th>
+            <td mat-cell *matCellDef="let orders" class="content-center">{{orders.packagesNumber}}</td>
+        </ng-container>
+        <ng-container matColumnDef="pickUpDate">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Fecha </th>
+            <td mat-cell *matCellDef="let orders" class="text-center">{{ orders.pickUpDate | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="pickUpHour">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Hora </th>
+            <td mat-cell *matCellDef="let orders" class="text-center">{{ orders.pickUpHour }}</td>
+        </ng-container>
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Estado </th>
+            <td mat-cell *matCellDef="let orders" [ngClass]="{'text-green': orders.enabled, 'text-red': !orders.enabled}">{{ orders.enabled ? "Completo" : "Incompleto" }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row 
+            *matRowDef="let row; columns: columns;"></tr>
+        </table>
+        <mat-divider class="divider"></mat-divider>
+
+        <mat-paginator [pageSizeOptions]="[7]"
+                    showFirstLastButtons
+                    aria-label="Select page of orders">
+        </mat-paginator>
+    </div>
+</div>
+<div class="button">
+    <button mat-raised-button class="back-button" routerLink="/admin"><mat-icon class="icon">undo</mat-icon>Volver</button>
+</div>
+

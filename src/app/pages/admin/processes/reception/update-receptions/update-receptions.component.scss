@@ -1,0 +1,71 @@
+.card {
+    margin-top: -120px;
+    margin-left: -72px;
+    margin-right: 12px;
+    height: 720px;
+}
+
+.title {
+    margin-top: 10px;
+    margin-bottom: 18px;
+}
+
+.first-row {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.responsible-input {
+    min-width: 40%;
+    width: 100%;
+}
+
+.date-field {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    .date {
+        width: 22%;
+    }
+    .time {
+        width: 22%;
+    }
+}
+
+.second-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.accepted-bales-field {
+    width: 90%;
+    margin-right: 20px;
+}
+
+.textarea-field {
+    width: 100%;
+    margin-top: 20px;
+}
+.buttons {
+    margin-top: 20px;
+    .add-button {
+        background-color: #0d4380c1;
+        color: white;
+    }
+    .clean-button {
+        margin-left: 40px;
+        margin-right: 40px;
+        background-color: #c17f227d;
+        color: white;
+    }
+    .back-button {
+        color: white;
+        background-color: rgba(170, 31, 31, 0.835);
+    }
+}
+
+
+
+

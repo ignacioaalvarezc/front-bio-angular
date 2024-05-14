@@ -1,0 +1,98 @@
+<div class="cardBox">
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ totalAmountForMiniCuts }}</div>
+            <div class="cardName">Total de bíombillas tipo mini <br> {{ currentYear }}</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon>visibility</mat-icon>
+        </div>
+    </div>
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ totalAmountForStandardCuts }}</div>
+            <div class="cardName">Total de bíombillas tipo standard <br> {{ currentYear }}</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon>visibility</mat-icon>
+        </div>
+    </div>
+    <div class="cards">
+        <div>
+            <div class="numbers">{{ totalAmountForBiggyCuts }}</div>
+            <div class="cardName">Total de bíombillas tipo biggy <br> {{ currentYear }}</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon>visibility</mat-icon>
+        </div>
+    </div>
+    <div class="cards">
+        <div>
+            <div class="numbers"></div>
+            <div class="cardName">Total de fardos aceptados</div>
+        </div>
+        <div class="iconBx">
+            <mat-icon>visibility</mat-icon>
+        </div>
+    </div>
+</div>
+
+<div class="graphBox">
+    <div class="box">
+        <app-polar-area-chart></app-polar-area-chart>
+    </div>
+    <div class="box">
+        <app-bar-chart></app-bar-chart>
+    </div>
+</div>
+
+<div class="details">
+    <div class="recentOrders">
+        <div class="cardHeader">
+            <h2>Cortes recientes</h2>
+            <button routerLink="/admin/view-cuttings" class="btn">Ver todo</button>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 reception-table">
+            <ng-container matColumnDef="responsible">
+                <th mat-header-cell *matHeaderCellDef class="mat-header-cell">Operador<th>
+                <td mat-cell *matCellDef="let cutBoxes">{{cutBoxes.responsible.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="cutType">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell">Tipo de corte</th>
+                <td mat-cell *matCellDef="let cutBoxes" class="content-center accepted-data">{{cutBoxes.cutType.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell">Peso</th>
+                <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{cutBoxes.weight}}</td>
+            </ng-container>
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell">Cantidad de bíombillas</th>
+                <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{cutBoxes.amount}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell"> Fecha </th>
+                <td mat-cell *matCellDef="let cutBoxes" class="content-center text-center">{{ cutBoxes.date | date: 'dd/MM/yyyy' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="endTime">
+                <th mat-header-cell *matHeaderCellDef class="content-center mat-header-cell"> Hora </th>
+                <td mat-cell *matCellDef="let cutBoxes" class="content-center">{{ formatLocalTime(cutBoxes.endTime) }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+        </table>
+    </div>
+  
+
+    <div class="recentCustomers">
+        <div class="cardHeader">
+            <h2>Producción de operadores</h2>
+            <button routerLink="/admin/view-reception-production" class="btn">Ver todo</button>
+        </div>
+        <table>
+            <tr *ngFor="let responsible of responsibles">
+                <td>{{ responsible.name }}</td>
+                <td></td>
+              </tr>
+        </table>
+    </div>

@@ -1,0 +1,41 @@
+<mat-card class="card h650">
+    <h2 class="text-center title">ACTUALIZA LOS DATOS DEL PARAMETRO {{ parameter.name | uppercase }} </h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="bootstrap-wrapper">
+        <div class="container">
+            <div class="row" style="margin-top : 20px;">
+                <div class="col-md-6 offset-md-3">
+
+                    <form (ngSubmit) = "updateParameter()">
+
+                        <mat-form-field class="full-width field" appearance="outline">
+                            <mat-label>Factor</mat-label>
+                            <input [(ngModel)] = "parameter.factor" name="name" type="number" matInput placeholder="Ingrese el factor de cálculo del parametro">
+                        </mat-form-field>
+
+                        <div class="observations-field">
+                            <mat-form-field class="textarea-field" appearance="fill">
+                                <mat-label>Observaciones</mat-label>
+                                    <textarea 
+                                        [(ngModel)]= "parameter.description"
+                                        type="text"
+                                        name="reasonRejected"
+                                        placeholder="Ingrese una descripción"
+                                        matInput
+                                        rows="6">
+                                    </textarea>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="container text-center buttons">
+                            <button type="submit" mat-raised-button color="primary">Actualizar</button>
+                            <button type="reset" class="clean-button" mat-raised-button>Limpiar</button>
+                            <button type="button" (click) = "goBack()" mat-raised-button class="back-button">Volver</button>
+                        </div>
+                    </form>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

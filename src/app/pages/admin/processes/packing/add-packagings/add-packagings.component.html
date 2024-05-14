@@ -1,0 +1,68 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">REGISTRAR UN EMPAQUETADO</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "savePackaging()">
+
+                <mat-form-field appearance="fill" class="responsible-input">
+                    <mat-label>Responsable</mat-label>
+                    <mat-select name="responsible" [(ngModel)]= "packagingData.responsible.responsibleId">
+                        <mat-option *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                            {{ r.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="box-type-input">
+                    <mat-label>Tipo de paquete</mat-label>
+                    <mat-select name="boxType" [(ngModel)]= "packagingData.boxType">
+                        <mat-option *ngFor= "let b of boxTypes" [value]="b">
+                            {{ b.name }} {{ b.provider }} {{ b.format }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="date-field">
+                    <mat-label class="date-label">Fecha: </mat-label>
+                    <input 
+                        [(ngModel)]="selectedDate"
+                        type="date"
+                        name="date">
+                        <mat-label class="time-label">Hora: </mat-label>
+                        <input 
+                            [(ngModel)]="selectedHour"
+                            type="time"
+                            name="time">
+                </div>
+                <div class="row second-row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cantidad de paquetes</mat-label>
+                            <input 
+                            [(ngModel)]= "packagingData.numberOfPackages"
+                            type="number"
+                            name="numberOfPackages"
+                            placeholder="Ingrese cantidad"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 ml-10">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Peso rechazado</mat-label>
+                            <input 
+                            [(ngModel)]= "packagingData.weightRejected"
+                            type="number"
+                            name="weightRejected"
+                            placeholder="Ingrese peso"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container text-center buttons">
+                    <button mat-raised-button color="primary" class="add-button"><mat-icon class="icon-btn">add</mat-icon>Registrar empaquetado</button>
+                    <button type="reset" mat-raised-button class="clean-button"><mat-icon class="icon-btn">brush</mat-icon>Limpiar</button>
+                    <button type="reset" mat-raised-button class="back-button" (click)="goBack()"><mat-icon class="icon-btn">undo</mat-icon>Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

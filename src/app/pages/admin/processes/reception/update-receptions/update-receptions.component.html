@@ -1,0 +1,96 @@
+<mat-card class="card">
+    <h2 class="text-center title mt10 mb4">ACTUALIZA LA RECEPCIÓN N° {{ reception.receptionId }}</h2>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row first-row">
+        <div class="col md-8 offset-md-2">
+            <form (ngSubmit) = "updateReception()">
+
+                <mat-form-field appearance="outline" class="responsible-input">
+                    <mat-label>Operador</mat-label>
+                    <mat-select name="responsible" [(ngModel)]= "reception.responsible.responsibleId">
+                        <mat-option *ngFor= "let r of responsibles" [value]="r.responsibleId">
+                            {{ r.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="date-field">
+                    <mat-form-field appearance="outline" class="date">
+                        <mat-label class="label-start-date">Fecha</mat-label>
+                        <input matInput 
+                            class="input" 
+                            [matDatepicker]="startDatePicker" 
+                            placeholder="" 
+                            [(ngModel)]="reception.date"
+                            name="date">
+                        <mat-datepicker-toggle class="input-calendar" matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startDatePicker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="time">
+                        <mat-label class="time-label">Hora de inicio: </mat-label>
+                        <input matInput
+                            [(ngModel)]="reception.startTime"
+                            type="time"
+                            name="startTime"
+                            required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="time">
+                        <mat-label class="time-label">Hora de término: </mat-label>
+                        <input matInput
+                            [(ngModel)]="reception.endTime"
+                            type="time"
+                            name="endTime"
+                            required>
+                    </mat-form-field>
+                </div>
+
+                <div class="row second-row">
+                    <div class="col-md-6">
+                        <mat-form-field class="accepted-bales-field" appearance="outline">
+                            <mat-label>Fardos aceptados</mat-label>
+                            <input 
+                            [(ngModel)]= "reception.acceptedBales"
+                            type="number"
+                            name="acceptedBales"
+                            placeholder="Ingrese aceptados"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6 ml-10">
+                        <mat-form-field class="rejected-bales-field" appearance="outline">
+                            <mat-label>Fardos rechazados</mat-label>
+                            <input 
+                            [(ngModel)]= "reception.rejectedBales"
+                            type="number"
+                            name="rejectedBales"
+                            placeholder="Ingrese rechazados"
+                            matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="col-md-6 ml-10">
+                    <mat-form-field class="textarea-field" appearance="outline">
+                        <mat-label>Observaciones</mat-label>
+                            <textarea 
+                                [(ngModel)]= "reception.reasonRejected"
+                                type="text"
+                                name="reasonRejected"
+                                placeholder="Ingrese sus observaciones"
+                                matInput
+                                rows="6">
+                            </textarea>
+                    </mat-form-field>
+                </div>
+                
+                <div class="container text-center buttons">
+                    <button mat-raised-button class="add-button">Actualizar recepción</button>
+                    <button type="reset" mat-raised-button class="clean-button">Limpiar</button>
+                    <button type="reset" mat-raised-button class="back-button" (click)="goBack()">Volver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>
